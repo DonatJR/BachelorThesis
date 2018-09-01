@@ -1,0 +1,23 @@
+% print 'Anhang' instead of the default appendices in ToC and on appendix cover
+\renewcommand{\appendixpagename}{Anhang}
+\renewcommand{\appendixtocname}{Anhang}
+
+% reset figure numbering for appendices
+\renewcommand\thefigure{\thesection.\arabic{figure}}
+\setcounter{figure}{0}
+
+% save old value for chapter in header
+\let\oldleftmark\leftmark
+% set to 'Anhang'
+\renewcommand{\leftmark}{Anhang}
+
+% make section numbering alphanumeric
+\renewcommand{\thesection}{\Alph{section}}
+
+\begin{appendices}
+
+
+\end{appendices}
+
+% and change it back to original value
+\renewcommand{\leftmark}{\oldleftmark}

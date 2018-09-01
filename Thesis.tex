@@ -1,0 +1,51 @@
+\input{preambel}
+
+\begin{document}
+
+\include{cover}
+
+\pagenumbering{roman} 
+
+% Danksagung
+% necessary?
+
+% Selbstständigkeitserklärung
+% necessary?
+
+% Genderhinweis
+% necessary?
+
+% TABLE OF CONTENTS
+\pagestyle{plain}
+\include{listings/tableofcontents}
+\pagestyle{fancy}
+
+% Abbildungsverzeichnis
+\include{listings/listoffigures}
+
+% Tabellenverzeichnis
+\include{listings/listoftables}
+
+\pagenumbering{arabic}
+
+% CHAPTERS
+% \include{}
+
+% redefine plain style as empty to avoid having page numbers on new chapter pages
+\makeatletter
+	\let\oldplainstyle\ps@plain
+	\let\ps@plain\ps@empty
+\makeatother
+
+\printglossaries
+
+\input{bibliography}
+
+\input{appendices}
+
+% undo redefinition in case we want to add any chapters in the future
+\makeatletter
+	\let\ps@plain\oldplainstyle
+\makeatother
+
+\end{document}
