@@ -224,3 +224,6 @@ TSWLatexianTemp*
 
 # pdfs to include in latex document
 !content/sources/*
+
+!cover/report_titel_page.pdf
+!cover/report_cover_empty.pdf
