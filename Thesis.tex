@@ -1,51 +1,39 @@
-\input{preambel}
+\documentclass[]{htwg-report}
+
+\addbibresource{./bib/report.bib}
 
 \begin{document}
 
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+%% 'reporttype' add background elements to the cover / front page
+%% possible values are:
+%% bachelor	--> B S C
+%% master	--> M S C
+%% other		--> none
+\reporttype{bachelor}
+
 \include{cover}
 
-\pagenumbering{roman} 
+\tableofcontents
 
-% Danksagung
-% necessary?
-
-% Selbstständigkeitserklärung
-% necessary?
-
-% Genderhinweis
-% necessary?
-
-% TABLE OF CONTENTS
-\pagestyle{plain}
-\include{listings/tableofcontents}
-\pagestyle{fancy}
-
-% Abbildungsverzeichnis
-\include{listings/listoffigures}
-
-% Tabellenverzeichnis
-\include{listings/listoftables}
-
-\pagenumbering{arabic}
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
 
 % CHAPTERS
-% \include{}
+\include{chapter_001_abstract}
+\include{chapter_002_goal}
+\include{chapter_003_framework_comparison}
+\include{chapter_004_development}
+\include{chapter_005_conclusion}
 
-% redefine plain style as empty to avoid having page numbers on new chapter pages
-\makeatletter
-	\let\oldplainstyle\ps@plain
-	\let\ps@plain\ps@empty
-\makeatother
+%% Use letters for the chapter numbers of the appendices.
+\appendix
 
-\printglossaries
+%\input{appendix-a}
 
-\input{bibliography}
-
-\input{appendices}
-
-% undo redefinition in case we want to add any chapters in the future
-\makeatletter
-	\let\ps@plain\oldplainstyle
-\makeatother
+\printbibliography[heading=bibintoc]
 
 \end{document}
