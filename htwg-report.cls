@@ -26,6 +26,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[ngerman]{babel}
+\RequirePackage{csquotes}
 \RequirePackage[nooneline,footnotesize]{caption}
 \RequirePackage{fancyhdr}
 \RequirePackage[flushmargin,hang]{footmisc}

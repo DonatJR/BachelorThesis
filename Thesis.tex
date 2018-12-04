@@ -6,7 +6,7 @@
 
 %% Use Roman numerals for the page numbers of the title pages and table of
 %% contents.
-\frontmatter
+\frontmatter{}
 
 %% 'reporttype' add background elements to the cover / front page
 %% possible values are:
@@ -19,20 +19,24 @@
 
 \tableofcontents
 
+\include{chapter_foreword}
+\include{chapter_acknowledgement}
+\include{chapter_abstract}
+
 %% Use Arabic numerals for the page numbers of the chapters.
-\mainmatter
+\mainmatter{}
 
 % CHAPTERS
-\include{chapter_001_abstract}
-\include{chapter_002_goal}
+\include{chapter_001_introduction}
+\include{chapter_002_requirements}
 \include{chapter_003_framework_comparison}
 \include{chapter_004_development}
 \include{chapter_005_conclusion}
 
 %% Use letters for the chapter numbers of the appendices.
-\appendix
+\appendix{}
 
-%\input{appendix-a}
+%\input{appendix_a}
 
 \printbibliography[heading=bibintoc]
 
