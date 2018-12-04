@@ -49,7 +49,7 @@
 \RequirePackage{eso-pic}
 
 \RequirePackage[xetex]{geometry}
-\RequirePackage[xetex]{hyperref}
+\RequirePackage{bookmark}
 \RequirePackage{fontspec}
 \RequirePackage{xltxtra}
 \defaultfontfeatures{Ligatures=TeX}
