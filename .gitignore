@@ -227,3 +227,6 @@ TSWLatexianTemp*
 
 !cover/report_titel_page.pdf
 !cover/report_cover_empty.pdf
+
+# output pdf 
+!Thesis.pdf
