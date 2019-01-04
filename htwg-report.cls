@@ -498,3 +498,5 @@
 }
 
 \newcommand{\fixme}[1]{{\colorbox{red!50}{FIXME: #1}}}
+
+\setlength{\emergencystretch}{10pt}

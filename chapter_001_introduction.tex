@@ -1,19 +1,21 @@
 \chapter{Einleitung}
 
-% was (+ wieso web ansicht -> vorteile im vergleich zu bisherigem ansatz und inwiefern diese den aufwand rechtfertigen)
-
 \section{Motivation}
+% was (+ wieso Webansicht -> Vorteile im vergleich zu bisherigem ansatz und inwiefern diese den aufwand rechtfertigen)
+% wieso modernes framework und ein paar Gegenbeispiele zu früheren Lösungen wie jQuery usw.
 
-\section{Voraussichtliche Schwierigkeiten}
-Automatische Umsetzung, Scripting, ...
-- framework mit dem automatische umsetzung von UI (+ von kunden weiterhin möglichst einfach individualisierbar), entwicklung / wartung, testbarkeit möglichst einfach ist
-- kommunikation zwischen UI und bisherigem Programm
-- anforderungen (scripting, filter, ...)
+\section{Erwartete Schwierigkeiten}
+Bereits im Vorfeld soll ein kleiner Überblick über die Bereiche dieser Arbeit gegeben werden, welche im Laufe der Umsetzung zu Schwierigkeiten führen könnten. Dies dient sowohl der Kontrolle der eigenen Fähigkeit Probleme bereits im Voraus korrekt einschätzen zu können, als auch dazu Einschätzungen von Problemstellen zukünftiger Projekte zu verbessern indem am Ende der Arbeit mit den tatsächlichen problematischen Stellen verglichen wird. Weitere Informationen zu den hier aufgelisteten Punkten werden in Kapitel 2 \fixme{link} aufgeführt.
+
+- framework mit dem automatische Umsetzung von UI (+ von Kunden weiterhin möglichst einfach individualisierbar)
+    -> dazu speichern von layout in DB anstatt bisher in einer Datei -> pro user
+- API die etwas taugt für Kommunikation zwischen UI und bisherigem Programm
+- speichern von dateibasierten Informationen (Projektdatei, registry und dli) muss in DB geschehen
+(- scripting, Tastenkombinationen, \ldots) 
 
 \section{Kapitelübersicht}
 In Kapitel 2 \fixme{link} werden Anforderungen (auch anhand bisheriger Features) ermittelt.
-In Kapitel 3 \fixme{link} werden verschiedene Frontend-Frameworks verglichen und anhand der Anforderungen das geeignetste rausgesucht.
-In Kapitel \fixme{neues Kapitel oder in 3 aufnehmen und umbenennen} wird diskutiert welches Protokoll zum Austausch der Daten genutzt wird (REST / GraphQL), wie die API aussehen soll (Endpoints + Aufbau der Nachrichten).
-In Kapitel \fixme{neues Kapitel} wird die Ausarbeitung des Konzepts beschrieben.
+In Kapitel 3 \fixme{link} werden die in Betracht gezogenen Technologien und deren Zusammenspiel untereinander vorgestellt. Dazu gehören die zu nutzende Programmierumgebung (Sprache, Testframework, Continuous Integration), der Vergleich verschiedener Frontend-Frameworks die anhand der in Kapitel 2 \fixme{link} formulierten Anforderungen bewertet werden und die Protokolle \fixme{rest und graphql protokoll?} zur Kommunikation mit dem Backend.
+In Kapitel \fixme{neues Kapitel: Ausarbeitung} wird die Ausarbeitung des Konzepts (\fixme{API erwähnen?}) mit den in Kapitel 3 \fixme{link} ausgesuchten Technologien beschrieben.
 In Kapitel 4 \fixme{link} wird der Entwicklungsprozess der beispielhaften Umsetzung des erstellten Konzepts dargestellt.
-In Kapitel 5 \fixme{link} wird das Ergebnis kritisch hinterfragt, die tatsächlich aufgetretenen Schwierigkeiten mit den vorausgesagten verglichen und ein Fazit gezogen.
+In Kapitel 5 \fixme{link} wird das Ergebnis kritisch hinterfragt, die tatsächlich aufgetretenen Schwierigkeiten mit den zuvor Erwarteten verglichen und ein Fazit gezogen.
