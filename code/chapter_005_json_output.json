@@ -1,0 +1,11 @@
+"pages": [
+    {
+    "name": "Page0",
+    "title": "",
+    "controls": [
+        {
+        "type": "static",
+        "text": "",
+        "textFromServer": true
+        },
+        ...

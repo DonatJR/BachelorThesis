@@ -37,9 +37,10 @@
 \RequirePackage{rotating}
 \RequirePackage[table]{xcolor}
 \RequirePackage{longtable}
+\RequirePackage[acronym,toc]{glossaries}
+
 
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
-\lstset{framextopmargin=50pt}
 
 %% 'background' includes 'graphicx' as well
 \RequirePackage[firstpage=true]{background}
@@ -64,12 +65,29 @@
 %% BIB
 \RequirePackage[
 	backend=biber,
-	style=alphabetic,
-	sorting=ynt
+	style=authoryear,
+    sorting=none,
+    maxnames=99,
+    backref=true
 ]{biblatex}
+
 \DefineBibliographyStrings{english}{%
   bibliography = {References},
 }
+
+\makeatletter
+
+\newrobustcmd*{\parentexttrack}[1]{%
+  \begingroup
+  \blx@blxinit
+  \blx@setsfcodes
+  \blx@bibopenparen#1\blx@bibcloseparen
+  \endgroup}
+
+\AtEveryCite{%
+  \let\parentext=\parentexttrack%
+  \let\bibopenparen=\bibopenbracket%
+  \let\bibcloseparen=\bibclosebracket}
 
 %% If the document is not compiled with XeLaTeX, we need to use the native
 %% fonts.
@@ -500,3 +518,55 @@
 \newcommand{\fixme}[1]{{\colorbox{red!50}{FIXME: #1}}}
 
 \setlength{\emergencystretch}{10pt}
+
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+
+\lstset{
+    language=[Sharp]C,
+    basicstyle=\footnotesize\ttfamily,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    tabsize=2,
+    extendedchars=true,
+    breaklines=true,
+    frame=single,
+    captionpos=b,
+    stringstyle=\color{cshred}\ttfamily,
+    showspaces=false,
+    showtabs=false,
+    xleftmargin=17pt,
+    framexleftmargin=17pt,
+    framexrightmargin=5pt,
+    framexbottommargin=4pt,
+    rulesep=0pt,
+    commentstyle=\color{green},
+    morecomment=[l]{//}, %use comment-line-style!
+    morecomment=[s]{/*}{*/}, %for multiline comments
+    showstringspaces=false,
+    morekeywords={ abstract, event, new, struct,
+    as, explicit, null, switch,
+    base, extern, object, this,
+    bool, false, operator, throw,
+    break, finally, out, true,
+    byte, fixed, override, try,
+    case, float, params, typeof,
+    catch, for, private, uint,
+    char, foreach, protected, ulong,
+    checked, goto, public, unchecked,
+    class, if, readonly, unsafe,
+    const, implicit, ref, ushort,
+    continue, in, return, using,
+    decimal, int, sbyte, virtual,
+    default, interface, sealed, volatile,
+    delegate, internal, short, void,
+    do, is, sizeof, while,
+    double, lock, stackalloc,
+    else, long, static,
+    enum, namespace, string},
+    commentstyle=\color{greencomments},
+    keywordstyle=\color{bluekeywords}\bfseries,
+    stringstyle=\color{redstrings},
+}

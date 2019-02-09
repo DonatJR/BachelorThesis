@@ -1,32 +1,113 @@
 \chapter{Technologien}
+\label{chap:technologies}
 
-\section{Entwicklungsumgebung} % Sprache, ide, tests, CI, ... auch für Tool zur automatischen Übersetzung!
-\subsection{Typescript}
-- OS Sprache von Microsoft
-- syntaktische Obermenge von zu JS
-- Optionale statische Typen für JavaScript
-   -> Typsicherheit
-   -> Codevervollständigung 
-- wird zu JavaScript transpiliert
-   -> es können automatisch die neusten Features von JS (ES6+) benutzt werden 
-- mehr Sicherheit und bessere Unterstützung durch Entwicklertools beim Programmieren
-- viele Fehler die in JS erst zur Laufzeit auffallen und schwer nachvollziehenden Problemen führen werden bereits beim Kompilieren gefunden
-- Nachteil nur der zusätzliche compile Schritt bzgl. Tooling / Aufwand
+Die richtige Technologie zur Lösung einer Problemstellung auszuwählen garantiert noch keinen Erfolg, ist aber ein wichtiger Grundstein um überhaupt erfolgreich sein zu können. In diesem Sinne sollte nicht zu wenig Augenmerk auf den Vergleich und die Entscheidung zwischen auf dem Markt verfügbaren Alternativen gelegt werden. Dieses Kapitel beschreibt, welche Technologien für welchen Teil der Architektur in Frage kommen, stellt diese gegenüber und begründet die Entscheidung für die am besten geeignetste Alternative.
 
-% Auswahl Frameworks:  Why popularity does matter
-% https://www.npmjs.com/npm/state-of-javascript-frameworks-2017-part-1
+\section{Entwicklungsumgebung} 
+Die Entwicklung des combit Relationship Managers findet momentan ausschließlich mit Visual Studio statt. Wie in Kapitel~\ref{chap:requirements} ist gibt es die Core-Komponente und Desktopkomponente, welche in C++ geschrieben sind, und eine auf den Core aufsetzende, in C\# geschrieben, .NET-Komponente zur Bereitstellung der Webfunktionalität. Der bestehende Entwicklungsprozess soll nicht verändert und auch nicht weiter thematisiert werden, da die neu zu entwickelnde UI-Schicht eine unabhängige Codebasis besitzt und auch konzeptionell von den bisherigen Schichten getrennt ist. 
 
-% weiteres Kriterium: Typescript Kompatibilität
+Für das in Kapitel~\ref{chap:requirements} angesprochene Tool zum Einlesen und Konvertieren der bisherigen UI-Repräsentation wurde wegen der vorhandenen internen Infrastruktur ebenfalls Visual Studio verwendet. Die Wahl der Programmiersprache fiel auf C\#, da der Zugriff auf das Dateisystem und speziell auf XML-Dateien, das Format der momentanen Repräsentation, sehr einfach ist. 
 
+Für die neu entstehenden Webtechnologien kann jeder beliebige Texteditor benutzt werden, da keine speziellen Funktionen einer IDE oder eines Editors notwendig sind. Der in den nachfolgenden Kapiteln entwickelte Code wurde aufgrund der guten Autovervollständigung, der Integration mit Versionsverwaltungstools und der einfachen Erweiterbarkeit, mit Visual Studio Code von Microsoft erstellt. Wichtiger als der Editor ist die Sprache für welche er benutzt wird. Im Bereich der Webentwicklung hat sich JavaScript ohne Konkurrenz durchgesetzt und ist die einzige Sprache, die von allen Browsern unterstützt wird. Das spiegelt sich auch in der Auswahl der Frontend-Frameworks wieder, welche alle entweder direkt oder indirekt in JavaScript geschrieben sind.   
 
 \section{Frontend-Frameworks}
-% Komponenten in dli anschauen und Übersetzungen für alle überlegen, dann beispielhaft von hand für verschiedene frameworks umsetzen und vergleichen.
+\subsection{Traditionelle Lösungen}
+Frameworks und Bibliotheken die versuchen Entwicklern das Erstellen von UIs zu erleichtern gibt es schon sehr lange und in einer sehr großen Anzahl. Traditionelle Projekte wie jQuery-UI (Mobile), Bootstrap und neuere Namen (Materialize, Semantic-UI, Pure, etc.) setzen auf die Gestaltung von fertigen Komponenten die per CSS-Klasse in eine vorhandene Webseite integriert werden können. Durch diesen Fokus auf pures Styling mit CSS sind diese Projekte meist sehr klein und können schnell integriert werden. Sie eignen sich damit für rapides Prototyping, jedoch nicht um komplette Webseiten von Grund auf zu erstellen -- vielmehr können sie mit den unten angesprochenen JavaScript-Projekten im Zusammenspiel benutzt werden.
 
-% => nicht nur Elemente sondern auch Anordnung wichtig!!
+\subsection{Moderne, JavaScript-basierte Lösungen}
+In jüngster Zeit haben komponentenbasierte Frameworks, Single-Page-Applications und Shadow-DOM starken Wachstum zu verzeichnen. \fixme{erklärung}
+Auch in diesem Bereich gibt es sehr viel Auswahl, aufgrund der zeitlichen Limitierung werden jedoch nur die größten drei Mitstreiter Vue, React und Angular \fixme{quelle, npm stats oder jahresrückblick} miteinander verglichen. Weitere Möglichkeiten für spätere Analysen sind Polymer, Ember, Knockout, Riot, etc.
 
-  %      -> Vergleich & für eins entscheiden: React, Vue.js, Angular, Polymer, ? ... ?, Ember, Knockout, Riot
-   %     -> warum nicht: bootstrap, semantic-UI, foundation, materialize, material UI, pure, skeleton, UI kit, milligram, Susy
+\subsection{Vergleich Vue, React \& Angular}
 
-% job market important in deciding for framework
+% philosophie und allgemeine punkte (pro / kontra):
+\subsubsection{Philosophie}
+\begin{itemize}
+    \item{Vue}
+    \item[] blaaa
+    \item{React}
+    \item[] blaaa
+    \item{Angular}
+    \item[] blaaa 
+\end{itemize}
 
-\section{REST (OData) vs. GraphQL}
+% vergleich anhand einiger konzepte (aus dokument), bild für beispiel
+\subsubsection{Aufbau von Apps (mit Beispielkomponente)}
+\begin{itemize}
+    \item{Vue}
+    \item[] blaaa
+    \item{React}
+    \item[] blaaa
+    \item{Angular}
+    \item[] blaaa 
+\end{itemize}
+
+\subsubsection{State-Management}
+\begin{itemize}
+    \item{Vue}
+    \item[] blaaa
+    \item{React}
+    \item[] blaaa
+    \item{Angular}
+    \item[] blaaa 
+\end{itemize}
+
+\subsubsection{Routing}
+\begin{itemize}
+    \item{Vue}
+    \item[] blaaa
+    \item{React}
+    \item[] blaaa
+    \item{Angular}
+    \item[] blaaa 
+\end{itemize}
+
+\subsubsection{Testing}
+\begin{itemize}
+    \item{Vue}
+    \item[] blaaa
+    \item{React}
+    \item[] blaaa
+    \item{Angular}
+    \item[] blaaa 
+\end{itemize}
+
+\subsubsection{\acrlong{ssr}}
+\begin{itemize}
+    \item{Vue}
+    \item[] blaaa
+    \item{React}
+    \item[] blaaa
+    \item{Angular}
+    \item[] blaaa 
+\end{itemize}
+
+\subsection{Fazit}
+Alle betrachteten Alternativen sind valide Optionen mit denen jegliche Anforderungen umgesetzt werden können. Der Einstieg in Angular scheint allerdings schwierig, da dort eine Vielzahl an Technologien für verschiedenste Zwecke mitgeliefert werden. Da es seitens der Funktionalität kein Unterschiede gibt kommt es mehr oder weniger darauf an welches Projekt einem Entwickler(team) am meisten zusagt bzw. mit welchem es am besten arbeiten kann.
+React besitzt mit Abstand die größte Community, es kann daher davon ausgegangen werden, dass die Weiterentwicklung, viele aufsetzende Bibliotheken und Ressourcen im Netz garantiert sind. Ein weiterer Vorteil, die Benutzung von Typescript vorausgesetzt, ist die IDE-Unterstützung beim Schreiben der Komponenten-Templates. Im Vergleich zu Vue wird bei React hier ausschließlich JavaScript genutzt, was es erlaubt die Typisierung von Typescript zu nutzen um Autovervollständigung oder ähnliche Hilfen anzuwenden. Vue hingegen schreibt JavaScript-Funktionsaufrufe in Strings und nutzt eigene, für nicht Vue-Entwickler unbekannte, HTML-Attribute für Schleifen und Verzweigungen -- da es sich dabei um Vue-Sonderfälle handelt kann die IDE oft nicht helfen, es liegt also am Entwickler das entsprechende Wissen aufzubauen und keine Fehler zu machen.
+
+Für den Prototypen wird vorerst React genutzt. Da die die Technologien zur Laufzeit alle kompatibel sind (sie werden alle in normales HTML, CSS und JavaScript transpiliert), kann dieser Code später aber auch mit Vue zusammen genutzt oder nach und nach ersetzt werden.
+
+\section{TypeScript}
+Bei JavaScript handelt es sich um eine dynamisch typisierte Sprache, dass heißt das sich Typen von Variablen zur Laufzeit ändern können und vor der Nutzung einer Variablen entsprechend überprüft werden müssen. Dies ist ein Vorteil wenn schnell kleinere Skripte geschrieben werden bei denen aufgrund ihrer überschaubaren Größe entsprechende Überprüfungen trivial sind oder es schlichtweg keine Rolle spielt ob ein Skript Fehler enthält. Für die Entwicklung von größeren Projekten ist diese Eigenschaft jedoch ein gravierender Nachteil, da Typen von Variablen im Code durch Entfernung von Deklaration und Nutzung nicht ersichtlich sind und daraus resultierende Fehler bei der Benutzung immer erst zur Laufzeit der betroffenen Zeilen auftreten oder sogar gar nicht als Fehler erkennbar sind und lediglich ein falsches (aber nicht unbedingt als falsch erkennbares) Ergebnis liefern.   
+
+Um dieser Art von subtilen Bugs vorzubeugen bietet Microsoft seit 2012 TypeScript an. Es handelt sich dabei um eine typisierte open-source Sprache welche als syntaktische Obermenge von JavaScript (normaler JavaScript-Code ist also ebenso gültiger TypeScript-Code \fixme{footnote?}) beschrieben werden kann und die zu gewöhnlichem JavaScript transpiliert \fixme{footnote} wird und somit trotz ihrer Vorteile keinen Kompatibilitätsnachteil besitzt. Da die Syntax auf JavaScript basiert ist das Erlernen dieser für JavaScript-Entwickler trivial. Durch Nutzung von typisierten Daten werden fehlerhafte Nutzungen von Variablen bereits bei der Entwicklung, eine entsprechende Integration des Editors vorausgesetzt, oder spätestens beim Transpilieren bemerkt und dem Entwickler als solche angezeigt. Ebenso erlaubt eine Editorintegration das Anbieten von Codevervollständigung und damit zu einem effektiveren Entwicklungsprozess.
+
+Der einzige Nachteil von TypeScript ist, dass ein zusätzlicher Schritt zum Übersetzen in JavaScript-Code notwendig ist. Da die meisten Projekte im Webbereich aber sowieso nicht komplett ohne ähnliche Tooling-Schritte auskommen und der TypeScript-Compiler einfach in diese bestehenden Prozesse integrierbar ist handelt es sich hierbei nur um eine überschaubare Einschränkung. Dieser Nachteil kann aber auch positiv ausgelegt werden, da es durch den Übersetzungsschritt möglich ist, bereits Features und Standards zu benutzen, welche noch nicht von allen Browsern unterstützt werden. Bei der Übersetzung werden diese in semantisch identischen Code umgewandelt, der unter Einhaltung von älteren Standards gültig ist, aber für den Entwickler schwieriger zu schreiben wäre. 
+
+Aufgrund dieser Argumentation soll zur Unterstützung der Entwickler und Vorbeugen von Fehlern bei die Entwicklung der React-Seite ausschließlich TypeScript benutzt werden. 
+
+\section{API-Anbindung}
+
+Die Anbindung der API kommen zwei Ansätze in Frage: Rest und GraphQL. Bei Rest handelt es sich um einen Architekturstil bei dem Ressourcen über URI-Endpunkte angesprochen und abgerufen werden. GraphQL hingegen ist eine von Facebook entwickelte Query-Sprache zur Abfrage von vorhandenen Daten.
+\fixme{mehr erklärung?}
+
+\subsection{Rest, OData, etc.}
+
+\subsection{GraphQL}
+
+\subsection{Fazit}
+
+Rest und GraphQL können beide für den gleichen Zweck benutzt werden, sie konkurrieren jedoch nicht direkt miteinander. Eine API kann ebenso beide Ansätze entweder ergänzend oder parallel anbieten. Bestehende Rest-APIs können durch das Resolver-Konzept von GraphQL auf einfache Art und Weise gewrapped werden und so auf beide Arten angesprochen werden. Rest ist flexibler als GraphQL, um diese Flexibilität aber richtig zu nutzen und damit eine API zu schreiben welche viele Jahre genutzt und skaliert werden kann ist aber viel Erfahrung und Aufwand notwendig. GraphQL scheint daher als die richtige Wahl für Firmen oder Personen die noch nicht viel Erfahrung in diesem Bereich sammeln konnten. GraphQL benötigt sowohl eine Server als auch eine Clientkomponente und hat damit mehr Abhängigkeiten als dies bei Rest der Fall ist, im Gegenzug ist es dadurch aber möglich effiziente, typsichere Anfragen zu erstellen. Ebenso wird mit dem mitgelieferten GraphiQL-Tool ein Abfrage-Editor mit Autovervollständigung und Fehlerbeschreibungen bereitgestellt, der es Nutzern sehr einfach macht eine API und deren Möglichkeiten zu erkunden sowie für alle Bestandteile direkt eine Dokumentation einzusehen. Ein weiterer Vorteil von GraphQL ist es, dass durch die typisierten Abfragen eine automatische Generierung von Mocking-Daten möglich ist. Mithilfe solcher Mocking-Daten kann das Entwicklerteam den API Client im Frontend entwickeln und testen, bevor das Backend mit den Echtdaten zur Verfügung steht.
+
+Wegen der einfacheren Nutzung von GraphQL und der besseren Unterstützung von Entwicklern durch Typisierung und mitgelieferten Tools wird im Prototyp diese Technologie verwendet.

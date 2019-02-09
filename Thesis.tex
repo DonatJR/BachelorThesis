@@ -2,6 +2,8 @@
 
 \addbibresource{./bib/report.bib}
 
+\include{abbreviations}
+
 \begin{document}
 
 %% Use Roman numerals for the page numbers of the title pages and table of contents.
@@ -17,13 +19,22 @@
 \include{cover}
 \include{title}
 
+\include{chapter_abstract}
+
 \tableofcontents
 
-\include{chapter_acknowledgement}
-\include{chapter_abstract}
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+
+\renewcommand\lstlistlistingname{Quellcodeverzeichnis}
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings
+
+\printglossary[type=\acronymtype,title=Abkürzungsverzeichnis]
 
 %% Use Arabic numerals for the page numbers of the chapters.
 \mainmatter{}
+
 
 % CHAPTERS
 \include{chapter_001_introduction}
