@@ -1,9 +1,8 @@
-\chapter{Technologien}
-\label{chap:technologies}
+\chapter{Technologien}\label{chap:technologies}
 
 Die richtige Technologie zur Lösung einer Problemstellung auszuwählen garantiert noch keinen Erfolg, ist aber ein wichtiger Grundstein um überhaupt erfolgreich sein zu können. In diesem Sinne sollte nicht zu wenig Augenmerk auf den Vergleich und die Entscheidung zwischen auf dem Markt verfügbaren Alternativen gelegt werden. Dieses Kapitel beschreibt, welche Technologien für welchen Teil der Architektur in Frage kommen, stellt diese gegenüber und begründet die Entscheidung für die am besten geeignetste Alternative.
 
-\section{Entwicklungsumgebung} 
+\section{Entwicklungsumgebung}
 Die Entwicklung des combit Relationship Managers findet momentan ausschließlich mit Visual Studio statt. Wie in Kapitel~\ref{chap:requirements} ist gibt es die Core-Komponente und Desktopkomponente, welche in C++ geschrieben sind, und eine auf den Core aufsetzende, in C\# geschrieben, .NET-Komponente zur Bereitstellung der Webfunktionalität. Der bestehende Entwicklungsprozess soll nicht verändert und auch nicht weiter thematisiert werden, da die neu zu entwickelnde UI-Schicht eine unabhängige Codebasis besitzt und auch konzeptionell von den bisherigen Schichten getrennt ist. 
 
 Für das in Kapitel~\ref{chap:requirements} angesprochene Tool zum Einlesen und Konvertieren der bisherigen UI-Repräsentation wurde wegen der vorhandenen internen Infrastruktur ebenfalls Visual Studio verwendet. Die Wahl der Programmiersprache fiel auf C\#, da der Zugriff auf das Dateisystem und speziell auf XML-Dateien, das Format der momentanen Repräsentation, sehr einfach ist. 
@@ -20,70 +19,85 @@ Auch in diesem Bereich gibt es sehr viel Auswahl, aufgrund der zeitlichen Limiti
 
 \subsection{Vergleich Vue, React \& Angular}
 
-% philosophie und allgemeine punkte (pro / kontra):
-\subsubsection{Philosophie}
+\subsubsection{Generell}
 \begin{itemize}
     \item{Vue}
-    \item[] blaaa
+    \item[] Entwickler legen viel Wert darauf möglichst kleine und dennoch performante Laufzeit zu entwickeln. Der Einstieg in Vue soll möglichst einfach sein, was durch eine sehr gute Dokumentation und ein hervorragendes CLI-Tool zum Erstellen neuer Projekte gelingt. Abhängigkeiten zwischen Daten und UI verfolgt Vue selbstständig, es werden daher immer nur Elemente aktualisiert wenn sich auch deren anzuzeigende Daten geändert haben. Das Erstellen von nativen Apps ist bei Vue nur mit Software von Drittherstellern möglich, die Entwickler arbeiten mit diesen aber zusammen um den Prozess zu verbessern. Das Verwenden von JavaScript-Templates (JSX) und Typescript ist mit etwas Konfiguration ebenfalls möglich. Vue hat im Vergleich noch ein kleines Ökosystem, kann aber dafür den stärksten Wachstum aller Frameworks verzeichnen.
     \item{React}
-    \item[] blaaa
+    \item[] React diktiert im Vergleich zu Vue noch weniger Vorgaben an die Entwickler, alle typischen Problemstellungen werden durch Bibliotheken gelöst. Dies ist möglich, da das Ökosystem sehr groß ist und eine breite und tiefe Auswahl an entsprechenden Bibliotheken bietet. Native Apps können mit dem vom gleichen Team entwickelten React-Native erstellt werden ohne dafür weitere Software zu benötigen. Durch die Konzentration auf wesentliche Features und Verbesserungen und eine stabile API stellt das React-Team sicher, dass Upgrades auf neue Versionen gar keine bis wenige Änderungen am bestehenden Code verlangen. Auch Typescript-Integration und damit verbundenes Tooling (Linter, Type checks, Autocompletion) sind problemlos möglich.
     \item{Angular}
-    \item[] blaaa 
+    \item[] Es werden für alle typischen Anforderungen die bei der Entwicklung anfallen bereits Tools und Konzepte mit ausgeliefert, um diese Anforderungen zu erfüllen. Dadurch ist Angular an sich sehr viel mächtiger als Vue und React. Die Chance dafür dass man abgesehen von Angular noch weitere große Bibliotheken benötigt ist gering, jedoch erfordert die Nutzung dieser mitgelieferten Möglichkeiten auch dass man sie gut genug kennt. Der Einstieg in Angular wird von vielen daher als mühsam und zeitintensiv beschrieben. Die Dokumentation ist sehr umfangreich, teilweise aber auch unübersichtlich und das Ökosystem von Angular ist zwar größer als das von Vue, es hat jedoch auch negatives Wachstum zu verzeichnen.
 \end{itemize}
 
-% vergleich anhand einiger konzepte (aus dokument), bild für beispiel
 \subsubsection{Aufbau von Apps (mit Beispielkomponente)}
+Um zumindest ein Gefühl für das Benutzen der jeweiligen Frameworks zu bekommen wurde eine Beispielkomponente ausgewählt die mit allen drei Frameworks umgesetzt werden soll. In Abbildung \ref{fig:example_component} sieht man die fertige Komponente. Bei Klick in das Edit-Feld ändert sich die Farbe des Randes um den Fokus zu signalisieren. Ändert man den Eintrag kann diese Änderung mit Esc verworfen oder mit Enter gespeichert werden. Der Text darunter gibt immer den momentan gespeicherten Wert wieder. Die Komponente wurde in Online-Editoren erstellt welche bereits eine fertig Umgebung mit dem jeweiligen Framework bieten. Auf die Benutzung weiterer Bibliotheken wurde hier explizit verzichtet.
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics{figures/example_component.png}
+        \caption{Beispielkomponente für die Umsetzung mit allen Frameworks}
+        \label{fig:example_component}
+\end{figure}
+
+
 \begin{itemize}
+    \captionsetup{justification=centering}
     \item{Vue}
-    \item[] blaaa
+    \item[] Die Vue-Komponente wird komplett als Instanz einer Vue-Klasse angelegt, der man Daten und Methoden übergeben muss. Im HTML-Template werden die Vue-eigenen Attribute ersichtlich.
+    \item[] \lstinputlisting[language={JavaScript}, label={lst:vue_example},caption={Umsetzung der Beispielkomponente mit Vue}]{code/chapter_003_vue_example.js}
     \item{React}
-    \item[] blaaa
+    \item[] Eine React-Komponente kann entweder als herkömmliche Klasse oder nur als Funktion, welche die darzustellenden UI-Elemente als Rückgabewert enthält, angegeben werden.
+    \item[] \lstinputlisting[language={JavaScript}, label={lst:react_example},caption={Umsetzung der Beispielkomponente mit React}]{code/chapter_003_react_example.js}
+    \item[] \lstinputlisting[language={JavaScript}, label={lst:react_hooks_example},caption={Funktionale Umsetzung der Beispielkomponente mit React}]{code/chapter_003_react_hooks_example.js}
     \item{Angular}
-    \item[] blaaa 
+    \item[] Bei Angular besteht eine Komponente wie bei React aus einer herkömmlichen Klasse. Diese wird jedoch mit einer speziellen Annotation mit Informationen über das Aussehen und die Platzierung der Komponente versehen.
+    \item[] \lstinputlisting[language={JavaScript}, label={lst:angular_example},caption={Umsetzung der Beispielkomponente mit Angular}]{code/chapter_003_angular_example.js}
 \end{itemize}
 
 \subsubsection{State-Management}
 \begin{itemize}
     \item{Vue}
-    \item[] blaaa
+    \item[] Standard ist, dass jede Komponente ihr eigenes State-Objekt besitzt. Zusätzlich dazu kann noch auf das State-Objekt der Vue-Instanz in der sich die Komponente befindet (Parent) zugegriffen werden. Dieses kann entweder direkt verändert oder per Store-Pattern \fixme{footnote?} verwaltet werden. Vuex ist eine direkt von Vue entwickelte Bibliothek welche das genannte Store-Pattern umsetzt.
     \item{React}
-    \item[] blaaa
+    \item[] React unterstützt nur einen unidirektionalen Datenfluss mit ``Props''. Diese werden Komponenten von ihren Elternkomponenten mitgegeben. Jede Komponente hat ihren eigenen State der per Props an Kinder weitergegeben (aber nicht direkt verändert) werden kann. Es gibt einige bekannte Bibliotheken welche das Verwaltung von State auf andere Arten lösen. Redux setzt das funktionale Flux-Pattern um, dabei werden Änderungen per Aktions-Event ausgelöst, die Events von Reducern ausgewertet und der State entsprechend verändert. Der neue State wird den entsprechenden UI-Elementen wieder unveränderbar (immutable) übergeben. MobX und react-easy-state setzen das bei Vue erwähnte Store-Pattern in React um.
     \item{Angular}
-    \item[] blaaa 
+    \item[] State wird direkt in den Klasseninstanzen der Komponenten gespeichert und kann durch herkömmliche OOP-Konzepte weitergegeben und verändert werden. Zusätzlich existiert auch NGXS, welches auf dem gleichen Prinzip wie Redux beruht, aufgrund moderner Typescript-Features laut Angular aber einfacher zu benutzen sei.
 \end{itemize}
 
 \subsubsection{Routing}
 \begin{itemize}
     \item{Vue}
-    \item[] blaaa
+    \item[] Routing ist direkt in Vue integriert. Routen werden in JavaScript mit Komponenten verknüpft und bei Aufruf dieser Route wird die verknüpfte Komponente an einen zuvor festgelegten Platzhalter im DOM gerendert.
     \item{React}
-    \item[] blaaa
+    \item[] Nicht integriert, es gibt aber mehrere Alternativen als Bibliotheken. Bei Aviator werden Routen als geschachteltes Objekt übergeben, bei dem jedes Element eine Route und eine Zielfunktion enthält. Die Zielfunktion wird aufgerufen wenn zur entsprechenden Route navigiert wird und muss wissen wie und wohin (etwa über Dokument-Selektoren) die entsprechende Komponente gerendert werden muss. Die Nutzung von JSX ist dabei nicht mehr möglich. Bei react-router hingegen werden die Routen deklarativ in den JSX-Templates hinterlegt. Sie enthalten als Property die Route für die sie gerendert werden sollen und die eigentliche Komponente die angezeigt werden soll.
     \item{Angular}
-    \item[] blaaa 
+    \item[] Analog zu Vue ist auch hier eine Lösung direkt integriert und funktioniert auch nach dem exakt gleichen Prinzip.
 \end{itemize}
 
 \subsubsection{Testing}
 \begin{itemize}
     \item{Vue}
-    \item[] blaaa
+    \item[] Vue enthält Test-Tools mit denen man Komponenten in Variablen rendern kann. Diese gespeicherten Komponenten sind herkömmliche JavaScript-Objekte und können dann mit weiteren (externen) Tools auf bestimmte Zustände und Eigenschaften geprüft werden.
     \item{React}
-    \item[] blaaa
+    \item[] Das Testen von React-Komponenten funktioniert analog zu Vue.
     \item{Angular}
-    \item[] blaaa 
+    \item[] Alle zum Testen benötigten Tools sind bereits enthalten und sehr ausführlich dokumentiert. Wenn nur bestimmte Teilaspekte einer Anwendung wie etwa die UI-Komponenten getestet werden sollen ist der Aufwand dies einzurichten durch die Notwendigkeit sich mit dem kompletten Test-Konzept auseinander setzen zu müssen höher als bei Vue und React
 \end{itemize}
 
 \subsubsection{\acrlong{ssr}}
+Bei allen Frameworks gibt es auch die Möglichkeit nur wenige Seiten ``vor-gerendert'' auf dem Server liegen zu haben anstatt sie dynamisch bei entsprechenden Anfragen zu generieren. Hierfür kann das Node.js Tool Prerender.io benutzt werden.
 \begin{itemize}
     \item{Vue}
-    \item[] blaaa
+    \item[] React liefert einen dafür vorgesehenen Renderer (vue-server-renderer) der Markup als Text generiert. Das kann beim initialen Laden der Seite ausgeliefert werden (erfordert einen Node.js Server).
     \item{React}
-    \item[] blaaa
+    \item[] Auch React liefert einen dafür vorgesehenen Renderer (ReactDOMServer) der Markup als Text generiert. Das kann beim initialen Laden der Seite ausgeliefert und auf Clientseite mit ReactDom.hydrate() mit Inhalten gefüllt werden (erfordert einen Node.js Server).
     \item{Angular}
-    \item[] blaaa 
+    \item[] Angular benötigt für \gls{ssr} zusätzliche Abhängigkeiten, Änderungen an der Konfiguration, ein zusätzliches Build / Bundle Target und ein zusätzliches Modul mit extra Konfiguration das auf dem Server läuft und dafür zuständig ist das neue JS-Bundle auszuliefern.
 \end{itemize}
 
 \subsection{Fazit}
-Alle betrachteten Alternativen sind valide Optionen mit denen jegliche Anforderungen umgesetzt werden können. Der Einstieg in Angular scheint allerdings schwierig, da dort eine Vielzahl an Technologien für verschiedenste Zwecke mitgeliefert werden. Da es seitens der Funktionalität kein Unterschiede gibt kommt es mehr oder weniger darauf an welches Projekt einem Entwickler(team) am meisten zusagt bzw. mit welchem es am besten arbeiten kann.
+Alle betrachteten Alternativen sind valide Optionen mit denen jegliche Anforderungen umgesetzt werden können. Der Einstieg in Angular scheint allerdings schwierig, da dort eine Vielzahl an Technologien für verschiedenste Zwecke mitgeliefert werden. Da es seitens der Funktionalität kein Unterschiede gibt kommt es mehr oder weniger darauf an welches Projekt einem Entwickler (-team) am meisten zusagt bzw. mit welchem es am besten arbeiten kann.
 React besitzt mit Abstand die größte Community, es kann daher davon ausgegangen werden, dass die Weiterentwicklung, viele aufsetzende Bibliotheken und Ressourcen im Netz garantiert sind. Ein weiterer Vorteil, die Benutzung von Typescript vorausgesetzt, ist die IDE-Unterstützung beim Schreiben der Komponenten-Templates. Im Vergleich zu Vue wird bei React hier ausschließlich JavaScript genutzt, was es erlaubt die Typisierung von Typescript zu nutzen um Autovervollständigung oder ähnliche Hilfen anzuwenden. Vue hingegen schreibt JavaScript-Funktionsaufrufe in Strings und nutzt eigene, für nicht Vue-Entwickler unbekannte, HTML-Attribute für Schleifen und Verzweigungen -- da es sich dabei um Vue-Sonderfälle handelt kann die IDE oft nicht helfen, es liegt also am Entwickler das entsprechende Wissen aufzubauen und keine Fehler zu machen.
 
 Für den Prototypen wird vorerst React genutzt. Da die die Technologien zur Laufzeit alle kompatibel sind (sie werden alle in normales HTML, CSS und JavaScript transpiliert), kann dieser Code später aber auch mit Vue zusammen genutzt oder nach und nach ersetzt werden.
@@ -98,13 +112,22 @@ Der einzige Nachteil von TypeScript ist, dass ein zusätzlicher Schritt zum Übe
 Aufgrund dieser Argumentation soll zur Unterstützung der Entwickler und Vorbeugen von Fehlern bei die Entwicklung der React-Seite ausschließlich TypeScript benutzt werden. 
 
 \section{API-Anbindung}
-
 Die Anbindung der API kommen zwei Ansätze in Frage: Rest und GraphQL. Bei Rest handelt es sich um einen Architekturstil bei dem Ressourcen über URI-Endpunkte angesprochen und abgerufen werden. GraphQL hingegen ist eine von Facebook entwickelte Query-Sprache zur Abfrage von vorhandenen Daten.
-\fixme{mehr erklärung?}
 
-\subsection{Rest, OData, etc.}
+\subsection{Rest}
+
 
 \subsection{GraphQL}
+GraphQL ist laut npm \fixme{quelle} die im Webbereich am meisten wachsende Technologie überhaupt, als Folge dessen wird es in Zukunft wahrscheinlich in vielen Projekten benutzt werden, der Aufbau von entsprechendem Know-How in diesem Bereich ist daher wichtig.
+Eine Abfrage bei GraphQL hat den gleichen Aufbau wie ein JSON-Dokument, mit der Besonderheit dass anstatt Schlüssel-Werte-Paaren nur Schlüssel bzw. der Name von Ressourcen angegeben werden. Eine Antwort hat immer den gleichen Aufbau wie eine Anfrage, die Schlüssel bzw. Ressourcennamen werden dabei mit den ausgelesenen Daten ersetzt. Durch die Nutzung von Typen für diese Abfragen kann garantiert werden, dass eine von den Tools akzeptierte Anfrage auf jeden Fall ein Ergebnis vom Server liefern wird. Die Abfragen müssen dabei nicht alle Felder einer Ressource enthalten, es können immer genau die Daten abgefragt werden die in einer spezifischen Situation gerade benötigt werden. Ebenfalls können mehrere unabhängige Anfragen zu einer großen Anfrage zusammengefasst und mit nur einem HTTP-Roundtrip beantwortet werden.
+Das typisierte Schema erlaubt weiterhin, Konsumenten jederzeit Informationen über sich selbst (Metadaten), etwa den Type eines Feldes oder weitere mögliche Felder zur Abfrage, zur Verfügung zu stellen. Vorausgesetzt ein Client kennt einen den Einsprungpunkt eines Graphen kann er mit diesen Metainformationen alle weiteren Informationen programmatisch auslesen. 
+Um Entwickler zu unterstützen existiert ein visueller Query-Editor ``GraphiQL'' mit Autovervollständigung und aus dem Schema generierter Dokumentation. Mithilfe diesen Editors kann sehr leicht in der API navigiert und direkt code-seitig benutzbare Abfragen generiert werden.
+Viele moderne Webseiten basieren nicht mehr nur auf der Annahmen, dass irgendwann Daten vom Server abgefragt werden, sondern auch darauf dass serverseitige Events / Änderungen das Laden oder Anzeigen von Daten auslösen können. GraphQL spezifiziert für diese Anforderung ein Abonnement-System: ein Client registriert sich beim Server für alle Daten, deren Änderung er sofort mitbekommen möchte und gibt an, welche Abfrage dafür ausgeführt werden soll. Bei einer Änderung wird diese Abfrage dann ausgeführt und die Daten über eine Websocket-Verbindung sofort an den Client übertragen.
+
+Um diese ganzen Eigenschaften zu ermöglichen ist es jedoch notwendig, dass sowohl der Client als auch der Server mit dem gleichen GraphQL-Schema arbeiten und damit aneinander gekoppelt sind.
+Ein weiterer Nachteil ist es, dass Aufgrund der Nutzung von GraphQL (nur HTTP-POST und identischer Endpoint) Caching nicht auf HTTP-Ebene geschehen kann und damit die Verantwortung für gute Cache-Strategien hauptsächlich beim Client liegen.
+
+Zwei bekannte Bibliotheken welche die GraphQL-Spezifikation in JavaScript umsetzen und das Erstellen von Queries, Caching und Debuggen erleichtern sind Apollo und Relay. Relay wurde ebenfalls von Facebook entwickelt, dennoch hat Apollo eine sehr viel größere Community. Für die Umsetzung im Backend (.NET) existieren ebenfalls Implementierungen, die am meisten genutzte davon ist graphql-dotnet.
 
 \subsection{Fazit}
 
