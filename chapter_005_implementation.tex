@@ -3,7 +3,7 @@
 In diesem Kapitel wird die Entwicklung eines auf dem zuvor ausgearbeiteten Konzept basierten Prototypen beschrieben. Dieser Prototyp enthält nicht alle im Konzept beschriebenen Anforderungen und befindet sich auch nicht in einem finalen Entwicklungsstadium, kann aber mit weiteren Entwicklungsressourcen als Grundlage für eine finale Implementierung genutzt werden. Er soll zeigen, wie sich das entworfene Konzept umsetzen lässt und die darin benutzten Technologien miteinander interagieren.
 
 \section{Tool zum Parsen der vorhandenen UI-Struktur}
-Wie in Kapitel~\ref{chap:concept} beschrieben müssen die Dateien welche das momentane UI-Layout enthalten in ein web-freundlicheres Format (JSON) übersetzt werden. Bei diesem Schritt ist es auch direkt möglich Informationen die zukünftig nicht mehr benötigt werden nicht mit zu übernehmen und andere Informationen in eine optimalere Struktur zu überführen. Für diesen Zweck wurde ein kleines Hilfstool in C\# geschrieben, welches sowohl die ``.dli''-Datei der Detailansicht als auch die ``.vlc''-Datei der Übersichtsliste einer einzelnen cRM-Ansicht als Input erhält und daraus eine ``.json''-Datei mit allen benötigten Informationen erstellt. Um die Anpassbar- und Wiederverwendbarkeit des Tools zu maximieren wurde das \textbf{Visitor-Pattern} \fixme{Erklärung?} angewandt. In Abbildung~\ref{fig:web-conv_file-tree} ist der Aufbau des Tools erkennbar.
+Wie in Kapitel~\ref{chap:concept} beschrieben müssen die Dateien welche das momentane UI-Layout enthalten in ein web-freundlicheres Format (JSON) übersetzt werden. Bei diesem Schritt ist es auch direkt möglich Informationen die zukünftig nicht mehr benötigt werden nicht mit zu übernehmen und andere Informationen in eine optimalere Struktur zu überführen. Für diesen Zweck wurde ein kleines Hilfstool in C\# geschrieben, welches sowohl die ``.dli''-Datei der Detailansicht als auch die ``.vlc''-Datei der Übersichtsliste einer einzelnen cRM-Ansicht als Input erhält und daraus eine ``.json''-Datei mit allen benötigten Informationen erstellt. Um die Anpassbar- und Wiederverwendbarkeit des Tools zu maximieren wurde das \textbf{Visitor-Pattern} angewandt. In Abbildung~\ref{fig:web-conv_file-tree} ist der Aufbau des Tools erkennbar.
 
 \begin{figure}
     \centering
@@ -31,7 +31,7 @@ Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_
         \caption{Klassendiagramm der Visitor-Struktur des Konvertierungstools}\label{fig:web-conv_class-diagramm}
 \end{figure}
 
-Der Input und das Endergebnis in Form eines vom GraphQL-Server direkt verwertbaren JSON-Dokument ist in den beiden Quellcodeauszügen~\ref{lst:xml_input} und \ref{lst:json_output} anhand eines kleines Auszuges ersichtlich. \fixme{vollständigeres beispiel und erklärung?}
+Der Input und das Endergebnis in Form eines vom GraphQL-Server direkt verwertbaren JSON-Dokument ist in den beiden Quellcodeauszügen~\ref{lst:xml_input} und \ref{lst:json_output} anhand eines kleines Auszuges ersichtlich.
 
 \fixme{Syntaxhighlighting:}
 \lstinputlisting[language={XML},caption={XML-Input},label={lst:xml_input}]{code/chapter_005_xml_input.xml}
@@ -45,5 +45,8 @@ Der Input und das Endergebnis in Form eines vom GraphQL-Server direkt verwertbar
 \subsection{Benutzung der Komponenten}
 \subsection{Storybook und Tests}
 \subsection{GraphQL-Mock-Server und Resolver}
+Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erstellt wird wurde vorübergehend eine Dummy-Implementierung eines GraphQL-Servers erstellt, welcher aber bereits das korrekte Schema und die Daten des erstellten Parser-Tools nutzt. Dies ermöglicht es den Client unter realen Gegebenheiten zu entwickeln. Die Implementierung besteht aus der Schemadefinition für GraphQL (einen Auszug daraus ist in Quellcodeauszug~\ref{} zu sehen) und den Resolvern die dem Schema die konkreten Daten zuordnen (der zu Auszug~\ref{} passende Code kann in Auszug~\ref{} eingesehen werden). Aus diesen beiden Einzelteilen wird mithilfe der \textit{Apollo GraphQL-tools}~\parencite{apollo_graphql-tools_2019} ein ausführbares Schema erstellt und mit \textit{express-graphql}~\parencite{express_graphql_2018} lokal gehostet. Für im Schema definierte Typen welche aufgrund fehlender Daten noch keine Resolver erhalten können, werden von den \textit{GraphQL-tools} automatisch Daten mit passenden Typen generiert.
 
+\section{Beispielumsetzung}
+Um die Validität des Konzeptes zu belegen wird eine beispielhafte, simple Oberfläche des \gls{crm} Desktopclients in die neue Darstellung übersetzt.
 % EINFACHES (wenig Elemente), ABER KOMPLETTES BSP für jetzige UI -> neue UI
