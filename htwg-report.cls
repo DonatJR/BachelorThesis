@@ -37,7 +37,7 @@
 \RequirePackage{rotating}
 \RequirePackage[table]{xcolor}
 \RequirePackage{longtable}
-\RequirePackage[acronym,toc]{glossaries}
+\RequirePackage[acronym,toc,nomain]{glossaries}
 
 
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
@@ -154,7 +154,7 @@
 }
 
 %% Table Settings
-\renewcommand{\arraystretch}{2}
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{htwg-black-10}{white}
 
 % Setting the graphicspath
