@@ -12,17 +12,17 @@ Wie in Kapitel~\ref{chap:concept} beschrieben müssen die Dateien welche das mom
         \caption{Datei-Struktur des Konvertierungstools}\label{fig:web-conv_file-tree}
 \end{figure}
 
-Zunächst wird für jedes einzulesende Token (XML-Element) eine eine Klasse vom \textit{``Acceptor''}-Interface (\textit{IDLIAcceptor} / \textit{IVLCAcceptor}) abgeleitet, dieses Interface enthält eine einzige Methode \textit{``Apply''}, welche einen Visitor (\textit{IDLIVisitor} / \textit{IVCLVisitor}) übergeben bekommt. Die jeweiligen Token-Klassen werden mit dem von ihnen verwalteten XML-Element (\textit{XElement}) initialisiert. Wie im Quellcodeauszug~\ref{lst:pageelement_init} anhand der Klasse \textit{``PageElement''} beispielhaft zu sehen werden aus diesem XML-Element die relevanten Informationen über das Element selbst (Name und Metadaten) und dessen verschachtelte Kinder-Elemente (Liste von Controls) ausgelesen.
+Zunächst wird für jedes einzulesende Token (XML-Element) eine eine Klasse vom \nameformat{Acceptor}-Interface (\nameformat{IDLIAcceptor} / \nameformat{IVLCAcceptor}) abgeleitet, dieses Interface enthält eine einzige Methode \textbf{Apply}, welche einen Visitor (\nameformat{IDLIVisitor} / \nameformat{IVCLVisitor}) übergeben bekommt. Die jeweiligen Token-Klassen werden mit dem von ihnen verwalteten XML-Element (\nameformat{XElement}) initialisiert. Wie im Quellcodeauszug~\ref{lst:pageelement_init} anhand der Klasse \nameformat{PageElement} beispielhaft zu sehen werden aus diesem XML-Element die relevanten Informationen über das Element selbst (Name und Metadaten) und dessen verschachtelte Kinder-Elemente (Liste von Controls) ausgelesen.
 
 \lstinputlisting[language={[Sharp]C},label={lst:pageelement_init},caption={Initialisierung der PageElement-Klasse}]{code/chapter_005_pageelement_init.cs}
 
-Nachdem die Informationen der XML-Datei auf diese Art und Weise in ihre einzelnen Token-Instanzen übersetzt wurden wird die \textit{Apply}-Methode, zu sehen in Quellcodeauszug~\ref{lst:dialogelement_apply}, des zentralen Tokens (\textit{DialogElement}) mit einer Visitor-Instanz aufgerufen. Der Visitor erhält als Parameter eben diese Instanz und extrahiert alle für ihn relevanten Informationen. Anschließend ruft er rekursiv die \textit{Apply}-Methoden der Kinder-Token auf und liest auch aus diesen die relevanten Informationen aus. Diese Aufrufe sind im Quellcodeauszug~\ref{lst:json-visitor_visit-methods} zu sehen. Nachdem alle Tokens vollständig besucht wurden können die gewonnenen Daten als JSON-String ausgegeben werden.
+Nachdem die Informationen der XML-Datei auf diese Art und Weise in ihre einzelnen Token-Instanzen übersetzt wurden wird die \textbf{Apply}-Methode, zu sehen in Quellcodeauszug~\ref{lst:dialogelement_apply}, des zentralen Tokens (\nameformat{DialogElement}) mit einer Visitor-Instanz aufgerufen. Der Visitor erhält als Parameter eben diese Instanz und extrahiert alle für ihn relevanten Informationen. Anschließend ruft er rekursiv die \textbf{Apply}-Methoden der Kinder-Token auf und liest auch aus diesen die relevanten Informationen aus. Diese Aufrufe sind im Quellcodeauszug~\ref{lst:json-visitor_visit-methods} zu sehen. Nachdem alle Tokens vollständig besucht wurden können die gewonnenen Daten als JSON-String ausgegeben werden.
 
 \lstinputlisting[language={[Sharp]C},label={lst:dialogelement_apply},caption={Apply-Methode der DialogElement-Klasse}]{code/chapter_005_dialogelement_apply.cs}
 
 \lstinputlisting[language={[Sharp]C},label={lst:json-visitor_visit-methods},caption={Ablaufen von und Extrahieren relevanter Informationen aus XML-Tokens durch den JSON-Visitor}]{code/chapter_005_json-visitor_visit-methods.cs}
 
-Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_class-diagramm} nochmals übersichtlich als Klassendiagramm dargestellt wird, ist ebenso daran zu erkennen, dass der einzige Unterschied beim Auslesen von Detailansicht-Datei und Übersichtslisten-Datei in der Implementierung der Interfaces besteht. Sowohl \textbf{Acceptor}- als auch \textbf{Visitor}-Klassen können sehr leicht einzeln angepasst oder ersetzt werden. Ebenso ist es möglich weitere Tokens, welche eventuell zu einem späteren Zeitpunkt benötigt werden, aus den XML-Dateien auszulesen, indem man weitere \textbf{Acceptor}- und \textbf{Visitor}-Implementierungen hinzufügt.
+Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_class-diagramm} nochmals übersichtlich als Klassendiagramm dargestellt wird, ist ebenso daran zu erkennen, dass der einzige Unterschied beim Auslesen von Detailansicht-Datei und Übersichtslisten-Datei in der Implementierung der Interfaces besteht. Sowohl \nameformat{Acceptor}- als auch \nameformat{Visitor}-Klassen können sehr leicht einzeln angepasst oder ersetzt werden. Ebenso ist es möglich weitere Tokens, welche eventuell zu einem späteren Zeitpunkt benötigt werden, aus den XML-Dateien auszulesen, indem man weitere \nameformat{Acceptor}- und \nameformat{Visitor}-Implementierungen hinzufügt.
 
 \begin{figure}
     \centering
@@ -31,22 +31,31 @@ Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_
         \caption{Klassendiagramm der Visitor-Struktur des Konvertierungstools}\label{fig:web-conv_class-diagramm}
 \end{figure}
 
-Der Input und das Endergebnis in Form eines vom GraphQL-Server direkt verwertbaren JSON-Dokument ist in den beiden Quellcodeauszügen~\ref{lst:xml_input} und \ref{lst:json_output} anhand eines kleines Auszuges ersichtlich.
+Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server direkt verwertbaren JSON-Dokument ist in den beiden Quellcodeauszügen~\ref{lst:xml_input} und \ref{lst:json_output} anhand eines kleines Auszuges ersichtlich.
 
 \fixme{Syntaxhighlighting:}
 \lstinputlisting[language={XML},caption={XML-Input},label={lst:xml_input}]{code/chapter_005_xml_input.xml}
 \lstinputlisting[caption={JSON-Ergebnis},label={lst:json_output}]{code/chapter_005_json_output.json}
 
 \section{Webseite}
+% CRA-Skelett
+% auf finalen Aufbau warten
 
-\subsection{CRA-Skelett}
 \subsection{React-Komponenten}
+% jede komponente mit zugehöriger query und interface dass den query-typen entspricht -> bekommen als props daten von grapqhl und entscheiden anhand der typen in der query-antwort dann welche kindkomponenten gerendert werden sollen
 
-\subsection{Benutzung der Komponenten}
 \subsection{Storybook und Tests}
+% normale Tests mit Jest (UI-Snapshots, evtl. weitere je nach Komponente)
+% diese in Storybook integriert. zusätzlich UI mit props in storybook zu sehen (änderungen, propchanges usw direkt sichtbar)
+% storybook für entwicklung, normale tests für CI
+
 \subsection{GraphQL-Mock-Server und Resolver}
-Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erstellt wird wurde vorübergehend eine Dummy-Implementierung eines GraphQL-Servers erstellt, welcher aber bereits das korrekte Schema und die Daten des erstellten Parser-Tools nutzt. Dies ermöglicht es den Client unter realen Gegebenheiten zu entwickeln. Die Implementierung besteht aus der Schemadefinition für GraphQL (einen Auszug daraus ist in Quellcodeauszug~\ref{} zu sehen) und den Resolvern die dem Schema die konkreten Daten zuordnen (der zu Auszug~\ref{} passende Code kann in Auszug~\ref{} eingesehen werden). Aus diesen beiden Einzelteilen wird mithilfe der \textit{Apollo GraphQL-tools}~\parencite{apollo_graphql-tools_2019} ein ausführbares Schema erstellt und mit \textit{express-graphql}~\parencite{express_graphql_2018} lokal gehostet. Für im Schema definierte Typen welche aufgrund fehlender Daten noch keine Resolver erhalten können, werden von den \textit{GraphQL-tools} automatisch Daten mit passenden Typen generiert.
+Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erstellt wird wurde vorübergehend eine Dummy-Implementierung eines \nameformat{GraphQL}-Servers erstellt, welcher aber bereits das korrekte Schema und die Daten des erstellten Parser-Tools nutzt. Dies ermöglicht es den Client unter realen Gegebenheiten zu entwickeln. Die Implementierung besteht aus der Schemadefinition für GraphQL (einen Auszug daraus ist in Quellcodeauszug~\ref{lst:graphql_schema} zu sehen) und den Resolvern die dem Schema die konkreten Daten zuordnen (der zu Auszug~\ref{lst:graphql_schema} passende Code kann in Auszug~\ref{lst:graphql_schema_resolver} eingesehen werden). Aus diesen beiden Einzelteilen wird mithilfe der \nameformat{Apollo GraphQL-tools}~\parencite{apollo_graphql-tools_2019} ein ausführbares Schema erstellt und mit \nameformat{express-graphql}~\parencite{express_graphql_2018} lokal gehostet. Für im Schema definierte Typen welche aufgrund fehlender Daten noch keine Resolver erhalten können, werden von den \nameformat{GraphQL-tools} automatisch Daten mit passenden Typen generiert.
+
+\lstinputlisting[label={lst:graphql_schema},caption={Teil der GraphQL-Schemadefinition}]{code/chapter_005_graphql_schema.gql}
+
+\lstinputlisting[language={JavaScript},label={lst:graphql_schema_resolver},caption={GraphQL Schema-Resolver}]{code/chapter_005_graphql_schema_resolver.js}
 
 \section{Beispielumsetzung}
-Um die Validität des Konzeptes zu belegen wird eine beispielhafte, simple Oberfläche des \gls{crm} Desktopclients in die neue Darstellung übersetzt.
+Um die Validität des Konzeptes zu belegen wird eine beispielhafte, simple Oberfläche des \nameformat{\gls{crm}} Desktopclients in die neue Darstellung übersetzt.
 % EINFACHES (wenig Elemente), ABER KOMPLETTES BSP für jetzige UI -> neue UI

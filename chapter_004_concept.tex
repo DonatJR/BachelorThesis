@@ -11,15 +11,18 @@ Der Aufbau der neuen Struktur entspricht simplen JSON-Daten.
 
 \section{Client}
 % react skelett mit komponenten wird ausgeliefert -> aufbau ui dann dynamisch
+% ablaufdiagram? client besteht aus App, Detail und Listview, fragt struktur an -> rendert placeholder mit korrekter struktur -> fragt parallel daten an -> zeigt daten an
+% bei eigenen änderungen -> daten an server schicken -> server sendet veränderte daten (-> prüfen ob korrekt?)
+% bei fremden änderungen -> daten neu rendern
 
 \subsection{React-Komponenten}
-Die jetzige Oberfläche besteht aus einer festen Anzahl von Darstellungs-Elementen welche je nach Kontext andere Inhalte anzeigen. Zu den Elementen gehören unter anderem statische Texte, Eingabefelder, Check- und Comboboxen, Gruppierungen und Container für weitere Elemente. Der Kontext für den Inhalt ergibt sich aus dem Datenbankfeld das mit dem jeweiligen Element verknüpft ist und Einstellungen wie Sichtbarkeitsbedingungen oder Formatierungen. Da bereits im Voraus bekannt ist, welche Art von UI-Elementen benötigt werden, können diese auch schon im Vorfeld erstellt werden. Diese fertigen React-Komponenten werden mit dem Produkt ausgeliefert und können zur Laufzeit dynamisch auf der Webseite platziert werden. Die Funktionalität dieser Elemente orientiert sich dabei immer an der Funktionalität der Originalkomponente.
+Die jetzige Oberfläche besteht aus einer festen Anzahl von Darstellungs-Elementen welche je nach Kontext andere Inhalte anzeigen. Zu den Elementen gehören unter anderem statische Texte, Eingabefelder, Check- und Comboboxen, Gruppierungen und Container für weitere Elemente. Der Kontext für den Inhalt ergibt sich aus dem Datenbankfeld das mit dem jeweiligen Element verknüpft ist und Einstellungen wie Sichtbarkeitsbedingungen oder Formatierungen. Da bereits im Voraus bekannt ist, welche Art von UI-Elementen benötigt werden, können diese auch schon im Vorfeld erstellt werden. Diese fertigen \nameformat{React}-Komponenten werden mit dem Produkt ausgeliefert und können zur Laufzeit dynamisch auf der Webseite platziert werden. Die Funktionalität dieser Elemente orientiert sich dabei immer an der Funktionalität der Originalkomponente.
 % props auflisten (evtl. nur gemeinsame?)
 
 \subsection{Verwendung der Komponenten}
 % => nicht nur Elemente sondern auch Anordnung wichtig!!
 \subsubsection{Erste Layout-Überlegungen}
-Zu Beginn erschien die zentrale Frage, wie  es technisch möglich ist, die Komponenten der Detailansicht vom Benutzer anpassbar anzuordnen. Eine naive Herangehensweise kann in Abbildung~\ref{fig:layout_grid_test} gesehen werden. Umgesetzt wurde dies mit einem CSS-Grid (rote Umrandung) das entweder horizontal oder vertikal in zwei Hälften getrennt werden kann. Jede dieser Hälften stellt abermals ein CSS-Grid dar das beliebig zwischen Elterncontainern verschoben werden kann. Abstrakt handelt es sich bei diesem Ansatz um einen nicht balancierten binären Baum an dessen Endpunkten (Blätter) sich genau eine UI-Komponente (blaue Umrandung) befindet. Es wurde schnell klar dass diese Lösung in ihrer binären Form nicht flexibel genug ist um vorhandene Layouts abzubilden. Da ein Ausbau auf eine Struktur mit variabler Anzahl an Verzweigungen sehr komplex und zeitaufwändig gewesen wäre wurde der Ansatz gänzlich verworfen und nach einer Alternativen Lösung gesucht. \fixme{bessere erklärung und begründung warum nicht flexibel genug}
+Zu Beginn erschien die zentrale Frage, wie es technisch möglich ist, die Komponenten der Detailansicht vom Benutzer anpassbar anzuordnen. Eine naive Herangehensweise kann in Abbildung~\ref{fig:layout_grid_test} gesehen werden. Umgesetzt wurde dies mit einem CSS-Grid (rote Umrandung) das entweder horizontal oder vertikal in zwei Hälften getrennt werden kann. Jede dieser Hälften stellt abermals ein CSS-Grid dar das beliebig zwischen Elterncontainern verschoben werden kann. Abstrakt handelt es sich bei diesem Ansatz um einen nicht balancierten binären Baum an dessen Endpunkten (Blätter) sich genau eine UI-Komponente (blaue Umrandung) befindet. Es wurde schnell klar dass diese Lösung in ihrer binären Form nicht flexibel genug ist um vorhandene Layouts abzubilden. Da ein Ausbau auf eine Struktur mit variabler Anzahl an Verzweigungen sehr komplex und zeitaufwändig gewesen wäre wurde der Ansatz gänzlich verworfen und nach einer Alternativen Lösung gesucht. \fixme{bessere erklärung und begründung warum nicht flexibel genug}
 
 \begin{figure}
     \centering
@@ -62,8 +65,7 @@ Mit einer entsprechende Einfärbung und einem Hinweistext kann diese Visualisier
 % layout und aussehen -> auf server serialisieren
 
 \subsection{Suche, Filter, Sortierung}
-Für die Darstellung der Übersichtsliste wird, wie oben beschrieben, die React-Bibliothek \textit{\fixme{section oben referenzieren}} benutzt. Diese ermöglicht das Suchen, Filtern und Sortieren bereits ohne weitere Anpassungen. Für die Detailansicht 
-% mit table lib erledigt
+Für die Darstellung der Übersichtsliste wird, wie oben beschrieben, die \nameformat{React}-Bibliothek \nameformat{\fixme{section oben referenzieren}} benutzt. Diese ermöglicht das Suchen, Filtern und Sortieren bereits ohne weitere Anpassungen. Für die Detailansicht 
 
 \subsection{Tests und Continuous Integration}
 
@@ -72,9 +74,8 @@ Für die Darstellung der Übersichtsliste wird, wie oben beschrieben, die React-
 \subsection{Keine Business Logik im Client}
 % bsp: representing state in rest and graphql phil sturgeon
 Clients sollten keine eigenen Schlussfolgerungen aus den von der API gelieferten Daten ziehen müssen. Dies ist ein häufig begangener Fehler, bei dem die API Daten zu einer Ressource angibt, diese Daten aber nicht direkt angezeigt sondern erst noch auf irgendeine Art verarbeitet und transformiert werden müssen. Es kann vorkommen, dass verschiedene Implementierungen von Clients an dieser Stelle andere Transformationen anwenden und die sichtbare Darstellung dabei für Endanwender inkonsistent erscheint. Selbst wenn darauf geachtet wird, dass zu einem Zeitpunkt X alle Clients konsistent implementiert sind ist es möglich diese Konsistenz durch Bugfixes oder andere clientspezifische Anpassungen in der Zukunft zu einem beliebigen Zeitpunkt Y wieder zu verlieren.
-Ein gutes Beispiel wurde von Phil Sturgeon \fixme{Quelle} beschrieben:
-Entsprechend ist diese API so konzipiert, dass notwendige Transformationen immer im Backend vollzogen werden. Ein Beispiel kann in \fixme{listing} gesehen werden, bei dem ...
-Auch spätere Anpassungen und Ergänzungen an der API müssen sich an dieses Paradigma halten.
+Ein gutes Beispiel wurde von \nameformat{Phil Sturgeon} \fixme{Quelle} beschrieben:
+Entsprechend ist diese API so konzipiert, dass notwendige Transformationen immer im Backend vollzogen werden. In der aktuellen Implementierung gibt es noch keine Instanz bei der dieses Paradigma angewendet werden muss, spätere Anpassungen und Ergänzungen an der API müssen aber entsprechend umgesetzt werden.
 
 % copy of api contract from api itself => bei graphql gegeben
 \subsection{GraphQL-Schema} % struktur und daten

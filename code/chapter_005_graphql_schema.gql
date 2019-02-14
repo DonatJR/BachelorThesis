@@ -1,0 +1,11 @@
+type Page {
+    title: String
+    controls: [Controls]
+}
+
+union Controls = Static | Edit | Button
+
+type Static {
+    text: String
+    fromServer: Boolean
+}
