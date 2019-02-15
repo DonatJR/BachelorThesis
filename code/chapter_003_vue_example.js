@@ -1,31 +1,31 @@
 Vue.component('custom-edit-field', {
     data: () => {
         return {
-        editing: false,
-        inputValue: '',
-        value: '',
-        borderColor: 'blue'
-        }
+            editing: false,
+            inputValue: '',
+            value: '',
+            borderColor: 'blue',
+        };
     },
     methods: {
         onFocus: function() {
-            this.editing = true
-            this.borderColor = 'green'
+            this.editing = true;
+            this.borderColor = 'green';
         },
         onFocusLost: function() {
-            this.editing = false
-            this.borderColor = 'blue'
+            this.editing = false;
+            this.borderColor = 'blue';
         },
         onSubmit: function() {
             if (this.editing) {
-                this.value = this.inputValue
-        }
+                this.value = this.inputValue;
+            }
         },
         onAbort: function() {
             if (this.editing) {
-            this.inputValue = this.value
+                this.inputValue = this.value;
             }
-        }
+        },
     },
     template: `
         <div>
@@ -42,5 +42,5 @@ Vue.component('custom-edit-field', {
                 Current value: {{value}}
             </div>
         </div>
-    `
-})
+    `,
+});

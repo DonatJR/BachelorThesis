@@ -29,7 +29,7 @@
 \RequirePackage{csquotes}
 \RequirePackage[nooneline,footnotesize]{caption}
 \RequirePackage{fancyhdr}
-\RequirePackage[flushmargin,hang]{footmisc}
+\RequirePackage[flushmargin,hang,perpage]{footmisc}
 \RequirePackage{ifpdf}
 \RequirePackage{ifxetex}
 \RequirePackage[hyphens]{url}
@@ -514,6 +514,8 @@
     linkcolor = title,
     urlcolor = title
 }
+
+%% custom defines
 
 \newcommand{\fixme}[1]{{\colorbox{red!50}{FIXME: #1}}}
 \newcommand{\nameformat}[1]{{\textit{#1}}}
