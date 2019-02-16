@@ -1,14 +1,17 @@
 \chapter{Fazit}\label{chap:conclusion}
 zielerreichung \& ist das erreichte ziel den aufwand wert?
+% GraphQL Vorteil kann erahnt werden, aber nicht sicher ob in großer codebase auch von Vorteil -> Erfahrung nicht ausreichend
+% React und Libs: top
 
 \section{Aufgetretene Schwierigkeiten}
-ursprüngliches ziel komplette UI umzusetzen zeitlich zu ambitioniert
-frontend frameworks zu viele ressourcen. unterscheidung durch gleiche funktionalität schwierig
+Das ursprüngliche Ziel, die komplette UI umzusetzen war zeitlich eine zu große Herausforderung. Während es sich bei dieser Tatsache nicht um eine technische Schwierigkeit handelt, hatte sie dennoch weitreichende Auswirkungen auf die letztendliche Umsetzung. Auch viele der am Anfang der Arbeit antizipierten Schwierigkeiten, insbesondere die serverbasierte Persistenz von Einstellungen und die Entscheidung über die im Web umsetzbaren Features, sind aufgrund dessen \textbf{noch} gar nicht relevant geworden.
+
+Während der Evaluierung der Frontend-Frameworks wurde klar, dass es in diesem Bereich so viele Ressourcen zu evaluieren gibt, dass eine vollständige Analyse dieser mehr als eine eigenständige Arbeit füllen könnte. Auf der anderen Seite sind sich die Technologien in ihrer Funktionalität aber dennoch so ähnlich, dass eine Entscheidung mehr oder weniger aufgrund persönlicher und betrieblicher Präferenzen getroffen werden muss. Diesen Widerspruch korrekt darzustellen und des weiteren die korrekte Entscheidung für eine Technologie zu treffen hat mehr Zeit und Anstrengung gekostet als erwartet.
+
+Eine weitere Schwierigkeit war es, das gesetzte Ziel nicht aus den Augen zu verlieren. Ein Konzept für ein technisches Projekt umfasst zahlreiche Themengebiete und noch mehr Entscheidungen, welche sich zu einem unbestimmten Zeitpunkt in der Zukunft als Fehler erweisen könnten. Es müssen stehts alle Anforderungen im Kopf behalten werden und Lösungen gefunden werden, die allen Anforderungen zugleich gerecht werden oder zumindest keine negativen Auswirkungen auf andere Bereiche haben. Diese mentale Belastung ist mitunter sehr anstrengend und kann bei der Entscheidungsfindung lähmen, wodurch man dem Ziel nicht mehr näher kommt.
 
 \section{Ausblick}
-- group / container Elemente
-- weitere formatierungen und eigenschaften für elemente
-- Lade / Fehlerzustände
-- graphql-queries optimieren
-- andere (statische) teile der UI umsetzen
-- backend (graphql-server)
+In diesem Abschnitt soll ein Ausblick auf zukünftige Entwicklungsmöglichkeiten zum weiteren Ausbau des Projektes gegeben werden. Zunächst sollen die noch nicht fertig gestellten Funktionalitäten abgeschlossen werden. Dazu zählen zwei \nameformat{React}-Komponenten, das Gruppen- und Container-Element, die Vervollständigung der Formatierungsmöglichkeiten und der Implementierung von Lade- und Fehlerzuständen aller Komponenten.
+Im Anschluss oder parallel kann weiter an einer optimaleren Umsetzung der GraphQL-API und auch der Abfragen geforscht werden. Die geringe Erfahrung in diesem Bereich lässt darauf schließen, dass hier noch Verbesserungspotential besteht.
+
+Wenn diese Aufgaben zufriedenstellend abgeschlossen sind können die weiteren Teile der Anforderungsanalyse in Angriff genommen werden. Zum einen sind dies alle weiteren Bestandteile der UI und damit die Umsetzung als online-gehostete Webseite (inklusive der funktionalen Anforderungen an Web-Apps) und zum anderen das dafür benötigte Backend mit einem GraphQL-Server der mit Echtdaten arbeitet.

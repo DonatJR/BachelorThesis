@@ -45,9 +45,19 @@ Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server dire
 % jede komponente mit zugehöriger query und interface dass den query-typen entspricht -> bekommen als props daten von grapqhl und entscheiden anhand der typen in der query-antwort dann welche kindkomponenten gerendert werden sollen
 
 \subsection{Tests}
-% normale Tests mit Jest (UI-Snapshots, evtl. weitere je nach Komponente)
-% diese in Storybook integriert. zusätzlich UI mit props in Storybook zu sehen (änderungen, propchanges usw direkt sichtbar)
-% storybook für entwicklung, normale tests für CI
+% Einzelne Komponenten werden durch die in Abschnitt~\ref{subsec:test_ci_concept} erwähnten Snapshot-Vergleiche (siehe Ausschnitt~\ref{lst:snapshot_test}) auf unerwünschte Veränderungen geprüft. Weiterhin wird getestet, ob die Übergabeparameter in Form von Formatierungsbedingungen oder anzuzeigenden Daten korrekt ausgewertet und dargestellt werden. Da die Clientapplikation bewusst wenig Logik enthält werden in diesem Bereich auch verhältnismäßig wenige Tests benötigt.
+% Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist nur die Konfiguration der Komponente selbst, optional werden aber jeweils noch die im Produktivcode ebenso benutzte globale CSS-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt `Knobs'). Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
+
+\lstinputlisting[language={JavaScript},caption={Snapshot-Test mit Jest und Enzyme},label={lst:snapshot_test}]{code/chapter_005_snapshot_test.js}
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{figures/storybook_example.png}
+        \caption{Beispiel für die Komponentendarstellung mit Storybook}\label{fig:storybook_example}
+\end{figure}
+
+\lstinputlisting[language={JavaScript},caption={Konfiguration einer Storybook Komponenten},label={lst:storybook_config}]{code/chapter_005_storybook_config.js}
 
 \subsection{GraphQL-Mock-Server und Resolver}
 Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erstellt wird wurde vorübergehend eine Dummy-Implementierung eines \nameformat{GraphQL}-Servers erstellt, welcher aber bereits das korrekte Schema und die Daten des erstellten Parser-Tools nutzt. Dies ermöglicht es den Client unter realen Gegebenheiten zu entwickeln. Die Implementierung besteht aus der Schemadefinition für GraphQL (einen Auszug daraus ist in Quellcodeauszug~\ref{lst:graphql_schema} zu sehen) und den Resolvern die dem Schema die konkreten Daten zuordnen (der zu Auszug~\ref{lst:graphql_schema} passende Code kann in Auszug~\ref{lst:graphql_schema_resolver} eingesehen werden). Aus diesen beiden Einzelteilen wird mithilfe der \nameformat{Apollo GraphQL-tools}~\parencite{apollo_graphql-tools_2019} ein ausführbares Schema erstellt und mit \nameformat{express-graphql}~\parencite{express_graphql_2018} lokal gehostet. Für im Schema definierte Typen welche aufgrund fehlender Daten noch keine Resolver erhalten können, werden von den \nameformat{GraphQL-tools} automatisch Daten mit passenden Typen generiert.
