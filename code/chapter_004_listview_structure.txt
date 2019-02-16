@@ -1,0 +1,10 @@
+{
+    "view": String,
+    "lists": Array<{
+        "database_table": String,
+        "columns": Array<{
+            "column": String,
+            "display_text": String
+        }>
+    }>
+}

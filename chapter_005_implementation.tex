@@ -1,5 +1,4 @@
 \chapter{Implementierung eines Prototypen}\label{chap:implementation}
-
 In diesem Kapitel wird die Entwicklung eines auf dem zuvor ausgearbeiteten Konzept basierten Prototypen beschrieben. Dieser Prototyp enthält nicht alle im Konzept beschriebenen Anforderungen und befindet sich auch nicht in einem finalen Entwicklungsstadium, kann aber mit weiteren Entwicklungsressourcen als Grundlage für eine finale Implementierung genutzt werden. Er soll zeigen, wie sich das entworfene Konzept umsetzen lässt und die darin benutzten Technologien miteinander interagieren.
 
 \section{Tool zum Parsen der vorhandenen UI-Struktur}
@@ -40,13 +39,14 @@ Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server dire
 \section{Webseite}
 % CRA-Skelett
 % auf finalen Aufbau warten
+\fixme{once project is ``final'' (Beispielumsetzung)}
 
 \subsection{React-Komponenten}
 % jede komponente mit zugehöriger query und interface dass den query-typen entspricht -> bekommen als props daten von grapqhl und entscheiden anhand der typen in der query-antwort dann welche kindkomponenten gerendert werden sollen
 
-\subsection{Storybook und Tests}
+\subsection{Tests}
 % normale Tests mit Jest (UI-Snapshots, evtl. weitere je nach Komponente)
-% diese in Storybook integriert. zusätzlich UI mit props in storybook zu sehen (änderungen, propchanges usw direkt sichtbar)
+% diese in Storybook integriert. zusätzlich UI mit props in Storybook zu sehen (änderungen, propchanges usw direkt sichtbar)
 % storybook für entwicklung, normale tests für CI
 
 \subsection{GraphQL-Mock-Server und Resolver}

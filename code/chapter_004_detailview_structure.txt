@@ -1,0 +1,11 @@
+{
+    "view": String,
+    "pages": Array<{
+        "name": String,
+        "controls": Array<{
+            "type": String, // Static, Edit, Button, ...
+            "database_field": String,
+            ... // Typspezifische Felder
+        }>
+    }>
+}
