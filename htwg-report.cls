@@ -358,7 +358,7 @@
                     \color{htwg-white}\scriptsize{\@student@number}
                     \linebreak
                     \linebreak
-                    \color{htwg-white}\scriptsize{E-Mail}
+                    \color{htwg-white}\scriptsize{E-Mail-Adresse}
                     \linebreak
                     \color{htwg-white}\scriptsize{\@student@email}
                 \end{flushleft}
