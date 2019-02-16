@@ -42,11 +42,12 @@ Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server dire
 \fixme{once project is ``final'' (Beispielumsetzung)}
 
 \subsection{React-Komponenten}
+\fixme{content}
 % jede komponente mit zugehöriger query und interface dass den query-typen entspricht -> bekommen als props daten von grapqhl und entscheiden anhand der typen in der query-antwort dann welche kindkomponenten gerendert werden sollen
 
 \subsection{Tests}
-% Einzelne Komponenten werden durch die in Abschnitt~\ref{subsec:test_ci_concept} erwähnten Snapshot-Vergleiche (siehe Ausschnitt~\ref{lst:snapshot_test}) auf unerwünschte Veränderungen geprüft. Weiterhin wird getestet, ob die Übergabeparameter in Form von Formatierungsbedingungen oder anzuzeigenden Daten korrekt ausgewertet und dargestellt werden. Da die Clientapplikation bewusst wenig Logik enthält werden in diesem Bereich auch verhältnismäßig wenige Tests benötigt.
-% Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist nur die Konfiguration der Komponente selbst, optional werden aber jeweils noch die im Produktivcode ebenso benutzte globale CSS-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt `Knobs'). Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
+Einzelne Komponenten werden durch die in Abschnitt~\ref{subsec:test_ci_concept} erwähnten Snapshot-Vergleiche (siehe Ausschnitt~\ref{lst:snapshot_test}) auf unerwünschte Veränderungen geprüft. Weiterhin wird getestet, ob die Übergabeparameter in Form von Formatierungsbedingungen oder anzuzeigenden Daten korrekt ausgewertet und dargestellt werden. Da die Clientapplikation bewusst wenig Logik enthält werden in diesem Bereich auch verhältnismäßig wenige Tests benötigt.
+Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist nur die Konfiguration der Komponente selbst, optional werden aber jeweils noch die im Produktivcode ebenso benutzte globale CSS-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt `Knobs'). Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
 
 \lstinputlisting[language={JavaScript},caption={Snapshot-Test mit Jest und Enzyme},label={lst:snapshot_test}]{code/chapter_005_snapshot_test.js}
 
