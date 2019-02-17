@@ -1,4 +1,6 @@
 \chapter{Implementierung eines Prototypen}\label{chap:implementation}
+\fixme{move code listings to appendix}
+
 In diesem Kapitel wird die Entwicklung eines auf dem zuvor ausgearbeiteten Konzept basierten Prototypen beschrieben. Dieser Prototyp enthält nicht alle im Konzept beschriebenen Anforderungen und befindet sich auch nicht in einem finalen Entwicklungsstadium, kann aber mit weiteren Entwicklungsressourcen als Grundlage für eine finale Implementierung genutzt werden. Er soll zeigen, wie sich das entworfene Konzept umsetzen lässt und die darin benutzten Technologien miteinander interagieren.
 
 \section{Tool zum Parsen der vorhandenen UI-Struktur}
@@ -32,8 +34,8 @@ Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_
 
 Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server direkt verwertbaren JSON-Dokument ist in Quellcodeauszug~\ref{lst:xml_input} und Auszug~\ref{lst:json_output} anhand eines kleines Auszuges ersichtlich.
 
-\fixme{Syntaxhighlighting:}
 \lstinputlisting[language={XML},caption={XML-Input},label={lst:xml_input}]{code/chapter_005_xml_input.xml}
+
 \lstinputlisting[caption={JSON-Ergebnis},label={lst:json_output}]{code/chapter_005_json_output.json}
 
 \section{Webseite}
@@ -42,8 +44,14 @@ Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server dire
 \fixme{once project is ``final'' (Beispielumsetzung)}
 
 \subsection{React-Komponenten}
-\fixme{content}
-% jede komponente mit zugehöriger query und interface dass den query-typen entspricht -> bekommen als props daten von grapqhl und entscheiden anhand der typen in der query-antwort dann welche kindkomponenten gerendert werden sollen
+Der Aufbau aller Komponenten folgt einem identischen Schema. Zunächst ist eine \nameformat{React}-Komponente so definiert, dass sie als Parameter alle notwendigen Eigenschaften zur Anzeige und Mutation von Daten übergeben bekommt. Die Komponente enthält keine Logik zur Veränderung der Parameter.
+CSS wird mithilfe der Bibliothek \nameformat{styled-components} in Form eines Wrappers um das eigentlich anzuzeigende HTML-Tag eingesetzt. Ein Nachteil von traditionellem CSS-Einsatz ist, dass CSS-Klassen an vielen Stellen der Oberfläche eingesetzt werden und eine Änderung am Aussehen durch den fehlenden Überblick aller Stellen möglicherweise ungewollte Auswirkungen haben kann. Durch die Verknüpfung von CSS mit \nameformat{React}-Komponenten kann sich eine Änderung immer nur auf diese eine Komponente auswirken. In Ausschnitt~\ref{lst:styled_components} ist die Benutzung und Unterstützung von Themes von \nameformat{styled-components} anhand eines HTML input-Tags dargestellt.
+Eine Komponente ist nicht selbst für das Abschicken der \nameformat{GraphQL}-Abfragen verantwortlich, dennoch wird der jeweilige Teil der Abfrage mit den für sie relevanten Daten zusammen mit ihr definiert. Eine speziell dafür ausgelegte Komponente weiter oben in der Hierarchie kombiniert alle Teilabfragen der UI-Komponenten (siehe Ausschnitt~\ref{lst:graphql_query}) und sendet diese an den Server. Diese Komponente ist weiterhin dafür zuständig die vom Server erhaltenen Daten wieder auf die UI-Komponenten zu verteilen.
+Der vierte und letzte Bestandteil einer Komponente sind die im nächsten Abschnitt beschriebenen Tests.
+
+\lstinputlisting[label={lst:styled_components},caption={Benutzung der styled-components Bibliothek}]{code/chapter_005_styled_components.js}
+
+\lstinputlisting[label={lst:graphql_query},caption={Einbettung von GraphQL-Query-Fragmenten}]{code/chapter_005_graphql_query.gql}
 
 \subsection{Tests}
 Einzelne Komponenten werden durch die in Abschnitt~\ref{subsec:test_ci_concept} erwähnten Snapshot-Vergleiche (siehe Ausschnitt~\ref{lst:snapshot_test}) auf unerwünschte Veränderungen geprüft. Weiterhin wird getestet, ob die Übergabeparameter in Form von Formatierungsbedingungen oder anzuzeigenden Daten korrekt ausgewertet und dargestellt werden. Da die Clientapplikation bewusst wenig Logik enthält werden in diesem Bereich auch verhältnismäßig wenige Tests benötigt.
@@ -51,14 +59,14 @@ Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests m�
 
 \lstinputlisting[language={JavaScript},caption={Snapshot-Test mit Jest und Enzyme},label={lst:snapshot_test}]{code/chapter_005_snapshot_test.js}
 
+\lstinputlisting[language={JavaScript},caption={Konfiguration einer Storybook Komponenten},label={lst:storybook_config}]{code/chapter_005_storybook_config.js}
+
 \begin{figure}
     \centering
     \captionsetup{justification=centering}
-    \includegraphics[width=\textwidth]{figures/storybook_example.png}
+    \includegraphics[width=0.8\textwidth]{figures/storybook_example.png}
         \caption{Beispiel für die Komponentendarstellung mit Storybook}\label{fig:storybook_example}
 \end{figure}
-
-\lstinputlisting[language={JavaScript},caption={Konfiguration einer Storybook Komponenten},label={lst:storybook_config}]{code/chapter_005_storybook_config.js}
 
 \subsection{GraphQL-Mock-Server und Resolver}
 Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erstellt wird wurde vorübergehend eine Dummy-Implementierung eines \nameformat{GraphQL}-Servers erstellt, welcher aber bereits das korrekte Schema und die Daten des erstellten Parser-Tools nutzt. Dies ermöglicht es den Client unter realen Gegebenheiten zu entwickeln. Die Implementierung besteht aus der Schemadefinition für GraphQL (einen Auszug daraus ist in Quellcodeauszug~\ref{lst:graphql_schema} zu sehen) und den Resolvern die dem Schema die konkreten Daten zuordnen (der zu Auszug~\ref{lst:graphql_schema} passende Code kann in Auszug~\ref{lst:graphql_schema_resolver} eingesehen werden). Aus diesen beiden Einzelteilen wird mithilfe der \nameformat{Apollo GraphQL-tools}~\parencite{apollo_graphql-tools_2019} ein ausführbares Schema erstellt und mit \nameformat{express-graphql}~\parencite{express_graphql_2018} lokal gehostet. Für im Schema definierte Typen welche aufgrund fehlender Daten noch keine Resolver erhalten können, werden von den \nameformat{GraphQL-tools} automatisch Daten mit passenden Typen generiert.

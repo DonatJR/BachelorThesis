@@ -1,0 +1,18 @@
+// query fragment of Edit component
+const EditFragment = gql`
+  fragment EditControl on Controls {
+    ... on Edit {
+      field
+    }
+  }
+`;
+
+// embedding of fragments
+ const ControlsFragment = gql`
+  fragment Controls on Page {
+    controls {
+      ...EditControl
+    }
+  }
+  ${EditFragment}
+`;
