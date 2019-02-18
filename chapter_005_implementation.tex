@@ -23,7 +23,7 @@ Nachdem die Informationen der XML-Datei auf diese Art und Weise in ihre einzelne
 
 \lstinputlisting[language={[Sharp]C},label={lst:json-visitor_visit-methods},caption={Ablaufen von und Extrahieren relevanter Informationen aus XML-Tokens durch den JSON-Visitor}]{code/chapter_005_json-visitor_visit-methods.cs}
 
-Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_class-diagramm} nochmals übersichtlich als Klassendiagramm dargestellt wird, ist ebenso daran zu erkennen, dass der einzige Unterschied beim Auslesen von Detailansicht-Datei und Übersichtslisten-Datei in der Implementierung der Interfaces besteht. Sowohl \nameformat{Acceptor}- als auch \nameformat{Visitor}-Klassen können sehr leicht einzeln angepasst oder ersetzt werden. Ebenso ist es möglich weitere Tokens, welche eventuell zu einem späteren Zeitpunkt benötigt werden, aus den XML-Dateien auszulesen, indem man weitere \nameformat{Acceptor}- und \nameformat{Visitor}-Implementierungen hinzufügt.
+Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_class-diagramm} nochmals übersichtlich als Klassendiagramm dargestellt wird, ist ebenso daran zu erkennen, dass der einzige Unterschied beim Auslesen von Detailansicht-Datei und Übersichtslisten-Datei in der Implementierung der Interfaces besteht. Sowohl \nameformat{Acceptor}- als auch \nameformat{Visitor}-Klassen können sehr leicht einzeln angepasst oder ersetzt werden. Ebenso ist es möglich weitere Tokens, welche eventuell zu einem späteren Zeitpunkt benötigt werden, aus den XML-Dateien auszulesen, indem weitere \nameformat{Acceptor}- und \nameformat{Visitor}-Implementierungen hinzufügt werden.
 
 \begin{figure}
     \centering
