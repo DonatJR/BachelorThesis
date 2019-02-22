@@ -38,14 +38,13 @@ Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server dire
 \lstinputlisting[caption={JSON-Ergebnis},label={lst:json_output}]{code/chapter_005_json_output.json}
 
 \section{Webseite}
-% CRA-Skelett
-% auf finalen Aufbau warten
+% mit cra erstellt, enthält nur unten beschriebene komponenten, zwei themes, tests und ein paar zusätzliche ui elemente zur steuerung des verhaltens (view mode, dark mode, edit mode)
 \fixme{once project is ``final'' (Beispielumsetzung)}
 
 \subsection{React-Komponenten}
 Der Aufbau aller Komponenten folgt einem identischen Schema. Zunächst ist eine \nameformat{React}-Komponente so definiert, dass sie als Parameter alle notwendigen Eigenschaften zur Anzeige und Mutation von Daten übergeben bekommt. Die Komponente enthält keine Logik zur Veränderung der Parameter.
 CSS wird mithilfe der Bibliothek \nameformat{styled-components} in Form eines Wrappers um das eigentlich anzuzeigende HTML-Tag eingesetzt. Ein Nachteil von traditionellem CSS-Einsatz ist, dass CSS-Klassen an vielen Stellen der Oberfläche eingesetzt werden und eine Änderung am Aussehen durch den fehlenden Überblick aller Stellen möglicherweise ungewollte Auswirkungen haben kann. Durch die Verknüpfung von CSS mit \nameformat{React}-Komponenten kann sich eine Änderung immer nur auf diese eine Komponente auswirken. In Ausschnitt~\ref{lst:styled_components} ist die Benutzung und Unterstützung von Themes von \nameformat{styled-components} anhand eines HTML input-Tags dargestellt.
-Eine Komponente ist nicht selbst für das Abschicken der \nameformat{GraphQL}-Abfragen verantwortlich, dennoch wird der jeweilige Teil der Abfrage mit den für sie relevanten Daten zusammen mit ihr definiert. Eine speziell dafür ausgelegte Komponente weiter oben in der Hierarchie kombiniert alle Teilabfragen der UI-Komponenten (siehe Ausschnitt~\ref{lst:graphql_query}) und sendet diese an den Server. Diese Komponente ist weiterhin dafür zuständig die vom Server erhaltenen Daten wieder auf die UI-Komponenten zu verteilen.
+Eine Komponente ist nicht selbst für das Abschicken der \nameformat{GraphQL}-Abfragen, welche die Struktur der Ansicht liefern, verantwortlich. Dennoch wird der jeweilige Teil der Abfrage mit den für sie relevanten Daten zusammen mit ihr definiert. Eine speziell dafür ausgelegte Komponente in einem höheren Teil der Hierarchie kombiniert alle Teilabfragen der UI-Komponenten (siehe Ausschnitt~\ref{lst:graphql_query}) und sendet diese an den Server. Diese Komponente ist weiterhin dafür zuständig die vom Server erhaltenen Daten wieder auf die UI-Komponenten zu verteilen. Für die Abfragen der tatsächlichen Daten wird eine weitere Abfrage für jede Komponente definiert, welche jeweils auch von dieser Komponente ausgeführt und ausgewertet wird.
 Der vierte und letzte Bestandteil einer Komponente sind die im nächsten Abschnitt beschriebenen Tests.
 
 \lstinputlisting[label={lst:styled_components},caption={Benutzung der styled-components Bibliothek}]{code/chapter_005_styled_components.js}
