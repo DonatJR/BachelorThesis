@@ -1,5 +1,4 @@
 \chapter{Technologien}\label{chap:technologies}
-
 Die richtige Technologie zur Lösung einer Problemstellung auszuwählen garantiert noch keinen Erfolg, ist aber ein wichtiger Grundstein, um überhaupt erfolgreich sein zu können. In diesem Sinne sollte nicht zu wenig Augenmerk auf den Vergleich und die Entscheidung zwischen auf dem Markt verfügbaren Alternativen gelegt werden. Dieses Kapitel beschreibt, welche Technologien für welchen Teil der Architektur in Frage kommen, stellt diese gegenüber und begründet die Entscheidung für die am besten geeignetste Alternative.
 
 \section{Entwicklungsumgebung}
@@ -10,25 +9,18 @@ Für das in Kapitel~\ref{chap:requirements} angesprochene Tool zum Einlesen und 
 Für die neu entstehenden Webtechnologien kann jeder beliebige Texteditor benutzt werden, da keine speziellen Funktionen einer IDE oder eines Editors notwendig sind. Der in den nachfolgenden Kapiteln entwickelte Code wurde aufgrund der guten Autovervollständigung, der Integration mit Versionsverwaltungstools und der einfachen Erweiterbarkeit, mit \nameformat{Visual Studio Code} von \nameformat{Microsoft} erstellt. Wichtiger als der Editor ist die Sprache für welche er benutzt wird. Im Bereich der Webentwicklung hat sich JavaScript ohne Konkurrenz durchgesetzt und ist die einzige Sprache, die von allen Browsern unterstützt wird. Das spiegelt sich auch in der Auswahl der Frontend-Frameworks wieder, welche alle entweder direkt oder indirekt in JavaScript geschrieben sind.   
 
 \section{Frontend-Frameworks}
-\subsection{Traditionelle Lösungen}
 Frameworks und Bibliotheken, die versuchen, Entwicklern das Erstellen von UIs zu erleichtern, gibt es schon sehr lange und in einer sehr großen Anzahl. Etablierte Projekte wie jQuery-UI (Mobile), Bootstrap und neuere Projekte (Materialize, Semantic-UI, Pure etc.) setzen auf die Gestaltung von fertigen Komponenten, die per CSS-Klasse in eine vorhandene Webseite integriert werden können. Durch diesen Fokus auf pures Styling mit CSS sind diese Projekte meist sehr klein und können schnell integriert werden. Sie eignen sich damit für Prototypen, welche rapiden Änderungen unterliegen, jedoch nicht um komplette Webseiten von Grund auf zu erstellen --- vielmehr können sie mit den unten angesprochenen JavaScript-Projekten im Zusammenspiel benutzt werden.
 
-\subsection{Moderne, JavaScript-basierte Lösungen}
-In diesem Bereich sind vor allem komponentenbasierte Frameworks, basierend auf einem virtuellen DOM\footnote{Virtuelle und meist vereinfachte Repräsentation der UI im Speicher, wird Framework-intern mit dem tatsächlichen DOM der Seite synchronisiert}, stark verbreitet. Aufgrund der zeitlichen Limitierung dieser Arbeit ist es nicht möglich, die große Auswahl an Alternativen zu betrachten. Es werden daher nur die drei größten Mitstreiter \nameformat{Vue}, \nameformat{React} und \nameformat{Angular} \parencite[vgl.][]{greif_benitte_rambeau_2018} miteinander verglichen. Weitere Möglichkeiten für spätere Analysen sind \nameformat{Polymer}, \nameformat{Ember}, \nameformat{Knockout}, \nameformat{Riot}, und Weitere.
+Im Bereich moderner, JavaScript-basierter Lösungen sind vor allem komponentenbasierte Frameworks, basierend auf einem virtuellen DOM\footnote{Virtuelle und meist vereinfachte Repräsentation der UI im Speicher, wird Framework-intern mit dem tatsächlichen DOM der Seite synchronisiert}, stark verbreitet. Aufgrund der zeitlichen Limitierung dieser Arbeit ist es nicht möglich, die große Auswahl an Alternativen zu betrachten. Es werden daher nur die drei größten Mitstreiter \nameformat{Vue}, \nameformat{React} und \nameformat{Angular} \parencite[vgl.][]{greif_benitte_rambeau_2018} miteinander verglichen. Weitere Möglichkeiten für spätere Analysen sind \nameformat{Polymer}, \nameformat{Ember}, \nameformat{Knockout}, \nameformat{Riot}, und Weitere.
 
-\subsection{Vergleich Vue, React \& Angular}
+\subsection{Generelle Aspekte}
+Bei \nameformat{Vue} legen die Entwickler viel Wert darauf, eine möglichst kleine und dennoch performante Laufzeit zu entwickeln. Der Einstieg in \nameformat{Vue} soll möglichst einfach sein, was durch eine sehr gute Dokumentation und ein hervorragendes \gls{cli}-Tool zum Erstellen neuer Projekte gelingt. Abhängigkeiten zwischen Daten und UI verfolgt \nameformat{Vue} selbstständig, es werden daher immer nur Elemente aktualisiert, wenn sich auch deren anzuzeigende Daten geändert haben. Das Erstellen von nativen Apps ist bei \nameformat{Vue} nur mit Software von Drittherstellern möglich, die Entwickler arbeiten mit diesen aber zusammen um den Prozess zu verbessern. Das Verwenden von JavaScript-Templates (JSX) und \nameformat{Typescript} ist mit etwas Konfiguration ebenfalls möglich. \nameformat{Vue} hat im Vergleich noch ein kleines Ökosystem, kann aber dafür den stärksten Wachstum aller Frameworks verzeichnen \parencite[vgl.][]{npmjs_2018}.
 
-\subsubsection{Generell}
-\begin{itemize}
-    \item{Vue}
-    \item[] Die Entwickler legen viel Wert darauf eine möglichst kleine und dennoch performante Laufzeit zu entwickeln. Der Einstieg in \nameformat{Vue} soll möglichst einfach sein, was durch eine sehr gute Dokumentation und ein hervorragendes \gls{cli}-Tool zum Erstellen neuer Projekte gelingt. Abhängigkeiten zwischen Daten und UI verfolgt \nameformat{Vue} selbstständig, es werden daher immer nur Elemente aktualisiert, wenn sich auch deren anzuzeigende Daten geändert haben. Das Erstellen von nativen Apps ist bei \nameformat{Vue} nur mit Software von Drittherstellern möglich, die Entwickler arbeiten mit diesen aber zusammen um den Prozess zu verbessern. Das Verwenden von JavaScript-Templates (JSX) und \nameformat{Typescript} ist mit etwas Konfiguration ebenfalls möglich. \nameformat{Vue} hat im Vergleich noch ein kleines Ökosystem, kann aber dafür den stärksten Wachstum aller Frameworks verzeichnen \parencite[vgl.][]{npmjs_2018}.
-    \item{React}
-    \item[] \nameformat{React} diktiert im Vergleich zu \nameformat{Vue} noch weniger Vorgaben an die Entwickler, alle typischen Problemstellungen werden durch Bibliotheken gelöst. Dies ist möglich, da das Ökosystem sehr groß ist und eine breite und tiefe Auswahl an entsprechenden Bibliotheken bietet. Native Apps (Android, iOS) können mit dem vom gleichen Team entwickelten \nameformat{React-Native} erstellt werden, ohne dafür weitere Software zu benötigen. Durch die Konzentration auf wesentliche Features und Verbesserungen und eine stabile API stellt das \nameformat{React}-Team sicher, dass Upgrades auf neue Versionen gar keine bis wenige Änderungen am bestehenden Code verlangen. Auch \nameformat{Typescript}-Integration und damit verbundenes Tooling (Linter, Type checks, Autocompletion) sind problemlos möglich.
-    \item{Angular}
-    \item[] Es werden für alle typischen Anforderungen die bei der Entwicklung anfallen bereits Tools und Konzepte mit ausgeliefert, um diese Anforderungen zu erfüllen. Dadurch ist \nameformat{Angular} an sich sehr viel mächtiger als \nameformat{Vue} und \nameformat{React}. Die Wahrscheinlichkeit dafür, dass abgesehen von \nameformat{Angular} noch weitere große Bibliotheken benötigt werden, ist gering. Die Nutzung dieser mitgelieferten Möglichkeiten erfordert jedoch auch, dass ausreichend Kenntnisse über sie vorhanden sind. Der Einstieg in \nameformat{Angular} wird von vielen daher als mühsam und zeitintensiv beschrieben. Die Dokumentation ist zwar sehr umfangreich, teilweise aber auch unübersichtlich. Das Ökosystem von \nameformat{Angular} ist noch größer als das von \nameformat{Vue}, es hat jedoch auch negatives Wachstum zu verzeichnen \parencite[vgl.][]{npmjs_2018}.
-\end{itemize}
+\nameformat{React} diktiert im Vergleich zu \nameformat{Vue} noch weniger Vorgaben an die Entwickler, alle typischen Problemstellungen werden durch Bibliotheken gelöst. Dies ist möglich, da das Ökosystem sehr groß ist und eine breite und tiefe Auswahl an entsprechenden Bibliotheken bietet. Native Apps (Android, iOS) können mit dem vom gleichen Team entwickelten \nameformat{React-Native} erstellt werden, ohne dafür weitere Software zu benötigen. Durch die Konzentration auf wesentliche Features und Verbesserungen und eine stabile API stellt das \nameformat{React}-Team sicher, dass Upgrades auf neue Versionen gar keine bis wenige Änderungen am bestehenden Code verlangen. Auch \nameformat{Typescript}-Integration und damit verbundenes Tooling (Linter, Type checks, Autocompletion) sind problemlos möglich.
 
-\subsubsection{Aufbau von Apps (mit Beispielkomponente)}
+Im Fall von \nameformat{Angular} werden für alle typischen Anforderungen die bei der Entwicklung anfallen bereits Tools und Konzepte mit ausgeliefert, um diese Anforderungen zu erfüllen. Dadurch ist \nameformat{Angular} an sich sehr viel mächtiger als \nameformat{Vue} und \nameformat{React}. Die Wahrscheinlichkeit dafür, dass abgesehen von \nameformat{Angular} noch weitere große Bibliotheken benötigt werden, ist gering. Die Nutzung dieser mitgelieferten Möglichkeiten erfordert jedoch auch, dass ausreichend Kenntnisse über sie vorhanden sind. Der Einstieg in \nameformat{Angular} wird von vielen daher als mühsam und zeitintensiv beschrieben. Die Dokumentation ist zwar sehr umfangreich, teilweise aber auch unübersichtlich. Das Ökosystem von \nameformat{Angular} ist noch größer als das von \nameformat{Vue}, es hat jedoch auch negatives Wachstum zu verzeichnen \parencite[vgl.][]{npmjs_2018}.
+
+\subsection{Aufbau von Apps (mit Beispielkomponente)}
 Um zumindest ein Gefühl für das Benutzen der jeweiligen Frameworks zu bekommen wurde eine Beispielkomponente ausgewählt die mit allen drei Frameworks umgesetzt werden soll. In Abbildung~\ref{fig:example_component} ist die fertige Komponente dargestellt. Bei Klick in das Edit-Feld ändert sich die Farbe des Rahmens um den Fokus zu signalisieren. Wird der Eintrag verändert, kann diese Änderung mit Escape verworfen, oder mit Enter übernommen werden. Der Text darunter gibt immer den momentan gespeicherten Wert wieder. Die Komponente wurde in Online-Editoren erstellt welche, bereits eine fertig Umgebung mit dem jeweiligen Framework bieten. Auf die Benutzung weiterer Bibliotheken wurde hier explizit verzichtet.
 
 \begin{figure}
@@ -38,61 +30,49 @@ Um zumindest ein Gefühl für das Benutzen der jeweiligen Frameworks zu bekommen
         \caption{Beispielkomponente für die Umsetzung mit allen Frameworks}\label{fig:example_component}
 \end{figure}
 
+Die \nameformat{Vue}-Komponente wird komplett als Instanz einer \nameformat{Vue}-Klasse angelegt, der Daten und Methoden übergeben werden müssen. Im HTML-Template werden die \nameformat{Vue}-eigenen Attribute ersichtlich.
 
-\begin{itemize}
-    \captionsetup{justification=centering}
-    \item{Vue}
-    \item[] Die \nameformat{Vue}-Komponente wird komplett als Instanz einer \nameformat{Vue}-Klasse angelegt, der Daten und Methoden übergeben werden müssen. Im HTML-Template werden die \nameformat{Vue}-eigenen Attribute ersichtlich.
-    \item[] \lstinputlisting[language={JavaScript}, label={lst:vue_example},caption={Umsetzung der Beispielkomponente mit Vue}]{code/chapter_003_vue_example.js}
-    \item{React}
-    \item[] Eine \nameformat{React}-Komponente kann entweder als herkömmliche Klasse oder nur als Funktion, welche die darzustellenden UI-Elemente als Rückgabewert enthält, angegeben werden.
-    \item[] \lstinputlisting[language={JavaScript}, label={lst:react_example},caption={Umsetzung der Beispielkomponente mit React}]{code/chapter_003_react_example.js}
-    \item[] \lstinputlisting[language={JavaScript}, label={lst:react_hooks_example},caption={Funktionale Umsetzung der Beispielkomponente mit React}]{code/chapter_003_react_hooks_example.js}
-    \item{Angular}
-    \item[] Bei \nameformat{Angular} besteht eine Komponente wie bei \nameformat{React} aus einer herkömmlichen Klasse. Diese wird jedoch mit einer speziellen Annotation mit Informationen über das Aussehen und die Platzierung der Komponente versehen.
-    \item[] \lstinputlisting[language={JavaScript}, label={lst:angular_example},caption={Umsetzung der Beispielkomponente mit Angular}]{code/chapter_003_angular_example.js}
-\end{itemize}
+\lstinputlisting[language={JavaScript}, label={lst:vue_example},caption={Umsetzung der Beispielkomponente mit Vue}]{code/chapter_003_vue_example.js}
 
-\subsubsection{State-Management}
-\begin{itemize}
-    \item{Vue}
-    \item[] Standard ist, dass jede Komponente ihr eigenes State-Objekt besitzt. Zusätzlich dazu kann noch auf das State-Objekt der \nameformat{Vue}-Instanz, in der sich die Komponente befindet, zugegriffen werden. Dieses kann entweder direkt verändert, oder per Store-Pattern\footnote{Geteilter State wird zentral verwaltet, Änderungen am State nur intern möglich} verwaltet werden. \nameformat{Vuex} ist eine direkt von \nameformat{Vue} entwickelte Bibliothek, welche das genannte Store-Pattern umsetzt.
-    \item{React}
-    \item[] \nameformat{React} unterstützt nur einen unidirektionalen Datenfluss mit sogenannten ``Props''\footnote{Unveränderbare Übergabeparameter}. Diese werden Komponenten von ihren Elternkomponenten mitgegeben. Jede Komponente hat ihren eigenen State der per ``Props'' an Kinder weitergegeben, aber nicht direkt verändert, werden kann. Es gibt einige bekannte Bibliotheken, welche die Verwaltung von State auf andere Arten lösen. \nameformat{Redux} setzt das funktionale Flux-Pattern um, dabei werden Änderungen per Aktions-Event ausgelöst, die Events von sogenannten Reducern ausgewertet und der State von diesen entsprechend verändert. Der neue State wird den entsprechenden UI-Elementen wieder unveränderbar (immutable) übergeben. \nameformat{MobX} und \nameformat{react-easy-state} setzen das bei \nameformat{Vue} erwähnte Store-Pattern in \nameformat{React} um.
-    \item{Angular}
-    \item[] State wird direkt in den Klasseninstanzen der Komponenten gespeichert und kann durch herkömmliche Konzepte der objektorientierten Programmierung weitergegeben und verändert werden. Zusätzlich existiert auch \nameformat{NGXS}, welches auf dem gleichen Prinzip wie \nameformat{Redux} beruht, aufgrund moderner \nameformat{Typescript}-Features laut \nameformat{Angular} aber einfacher zu benutzen sei.
-\end{itemize}
+Eine \nameformat{React}-Komponente kann entweder als herkömmliche Klasse oder nur als Funktion, welche die darzustellenden UI-Elemente als Rückgabewert enthält, angegeben werden.
 
-\subsubsection{Routing}
-\begin{itemize}
-    \item{Vue}
-    \item[] Routing ist direkt in \nameformat{Vue} integriert. Routen werden in JavaScript mit Komponenten verknüpft und bei Aufruf dieser Route wird die verknüpfte Komponente an einen zuvor festgelegten Platzhalter im DOM gerendert.
-    \item{React}
-    \item[] Nicht integriert, es gibt aber mehrere Alternativen als Bibliotheken. Bei \nameformat{Aviator} werden Routen als geschachteltes Objekt übergeben, bei dem jedes Element eine Route und eine Zielfunktion enthält. Die Zielfunktion wird aufgerufen, wenn zur entsprechenden Route navigiert wird und muss wissen, wie und an welche Stelle im DOM (etwa über Dokument-Selektoren) die entsprechende Komponente gerendert werden soll. Die Nutzung von JSX ist dabei nicht mehr möglich. Bei \nameformat{react-router} hingegen werden die Routen deklarativ in den JSX-Templates hinterlegt. Sie enthalten als Property die Route, für die sie gerendert werden sollen, und die eigentliche Komponente, die angezeigt werden soll.
-    \item{Angular}
-    \item[] Analog zu \nameformat{Vue} ist auch hier eine Lösung direkt integriert und funktioniert auch nach dem exakt gleichen Prinzip.
-\end{itemize}
+\lstinputlisting[language={JavaScript}, label={lst:react_example},caption={Umsetzung der Beispielkomponente mit React}]{code/chapter_003_react_example.js}
 
-\subsubsection{Testing}
-\begin{itemize}
-    \item{Vue}
-    \item[] \nameformat{Vue} enthält Test-Tools mit denen Komponenten in Variablen gerendert werden können. Diese gespeicherten Komponenten sind herkömmliche JavaScript-Objekte und können dann mit weiteren (externen) Tools auf bestimmte Zustände und Eigenschaften geprüft werden.
-    \item{React}
-    \item[] Das Testen von \nameformat{React}-Komponenten funktioniert analog zu \nameformat{Vue}.
-    \item{Angular}
-    \item[] Alle zum Testen benötigten Tools sind bereits enthalten und sehr ausführlich dokumentiert. Wenn nur bestimmte Teilaspekte einer Anwendung, wie etwa die UI-Komponenten, getestet werden sollen, ist der Aufwand dies einzurichten durch die Notwendigkeit, sich mit dem kompletten Test-Konzept auseinandersetzen zu müssen, höher als bei \nameformat{Vue} und \nameformat{React}.
-\end{itemize}
+\lstinputlisting[language={JavaScript}, label={lst:react_hooks_example},caption={Funktionale Umsetzung der Beispielkomponente mit React}]{code/chapter_003_react_hooks_example.js}
 
-\subsubsection{\acrlong{ssr}}
-Bei allen Frameworks gibt es auch die Möglichkeit nur wenige Seiten ``vor-gerendert'' auf dem Server liegen zu haben, anstatt sie dynamisch bei entsprechenden Anfragen zu generieren. Hierfür kann das \nameformat{Node.js} Tool \nameformat{Prerender.io} benutzt werden.
-\begin{itemize}
-    \item{Vue}
-    \item[] \nameformat{Vue} liefert einen dafür vorgesehenen Renderer (\nameformat{vue-server-renderer}), der Markup als Text generiert. Das kann beim initialen Laden der Seite ausgeliefert werden (erfordert einen \nameformat{Node.js} Server).
-    \item{React}
-    \item[] Auch \nameformat{React} liefert einen dafür vorgesehenen Renderer (\nameformat{ReactDOMServer}), der Markup als Text generiert. Das kann beim initialen Laden der Seite ausgeliefert und auf Clientseite mit ReactDom.hydrate() mit Inhalten gefüllt werden (erfordert einen \nameformat{Node.js} Server).
-    \item{Angular}
-    \item[] \nameformat{Angular} benötigt für \gls{ssr} zusätzliche Abhängigkeiten, Änderungen an der Konfiguration, ein zusätzliches Build / Bundle Target und ein zusätzliches Modul mit extra Konfiguration, das auf dem Server läuft und dafür zuständig ist das neue JavaScript-Bundle auszuliefern.
-\end{itemize}
+Bei \nameformat{Angular} besteht eine Komponente wie bei \nameformat{React} aus einer herkömmlichen Klasse. Diese wird jedoch mit einer speziellen Annotation mit Informationen über das Aussehen und die Platzierung der Komponente versehen.
+
+\lstinputlisting[language={JavaScript}, label={lst:angular_example},caption={Umsetzung der Beispielkomponente mit Angular}]{code/chapter_003_angular_example.js}
+
+\subsection{State-Management}
+Jede Applikation muss früher oder später Daten speichern, um Nutzern mehr als nur die simpelsten Funktionalitäten anbieten zu können. Wie das Speichern dieser Daten mit den drei Frameworks typischerweise umgesetzt ist in diesem Abschnitt beschrieben.
+
+Der Standard bei \nameformat{Vue} ist, dass jede Komponente ihr eigenes State-Objekt besitzt. Zusätzlich dazu kann noch auf das State-Objekt der \nameformat{Vue}-Instanz, in der sich die Komponente befindet, zugegriffen werden. Dieses kann entweder direkt verändert, oder per Store-Pattern\footnote{Geteilter State wird zentral verwaltet, Änderungen am State nur intern möglich} verwaltet werden. \nameformat{Vuex} ist eine direkt von \nameformat{Vue} entwickelte Bibliothek, welche das genannte Store-Pattern umsetzt.
+
+\nameformat{React} unterstützt nur einen unidirektionalen Datenfluss mit sogenannten ``Props''\footnote{Unveränderbare Übergabeparameter}. Diese werden Komponenten von ihren Elternkomponenten mitgegeben. Jede Komponente hat ihren eigenen State der per ``Props'' an Kinder weitergegeben, aber nicht direkt verändert, werden kann. Es gibt einige bekannte Bibliotheken, welche die Verwaltung von State auf andere Arten lösen. \nameformat{Redux} setzt das funktionale Flux-Pattern um, dabei werden Änderungen per Aktions-Event ausgelöst, die Events von sogenannten Reducern ausgewertet und der State von diesen entsprechend verändert. Der neue State wird den entsprechenden UI-Elementen wieder unveränderbar (immutable) übergeben. \nameformat{MobX} und \nameformat{react-easy-state} setzen das bei \nameformat{Vue} erwähnte Store-Pattern in \nameformat{React} um.
+
+State bei \nameformat{Angular} wird direkt in den Klasseninstanzen der Komponenten gespeichert und kann durch herkömmliche Konzepte der objektorientierten Programmierung weitergegeben und verändert werden. Zusätzlich existiert auch \nameformat{NGXS}, welches auf dem gleichen Prinzip wie \nameformat{Redux} beruht, aufgrund moderner \nameformat{Typescript}-Features laut \nameformat{Angular} aber einfacher zu benutzen sei.
+
+\subsection{Routing}
+Routing ist bei \nameformat{Vue} direkt integriert. Routen werden in JavaScript mit Komponenten verknüpft und bei Aufruf dieser Route wird die verknüpfte Komponente an einen zuvor festgelegten Platzhalter im DOM gerendert.
+
+\nameformat{React} besitzt kein integrierten Routing-Mechanismen, es gibt aber mehrere Alternativen als Bibliotheken. Bei \nameformat{Aviator} werden Routen als geschachteltes Objekt übergeben, bei dem jedes Element eine Route und eine Zielfunktion enthält. Die Zielfunktion wird aufgerufen, wenn zur entsprechenden Route navigiert wird und muss wissen, wie und an welche Stelle im DOM (etwa über Dokument-Selektoren) die entsprechende Komponente gerendert werden soll. Die Nutzung von JSX ist dabei nicht mehr möglich. Bei \nameformat{react-router} hingegen werden die Routen deklarativ in den JSX-Templates hinterlegt. Sie enthalten als Property die Route, für die sie gerendert werden sollen, und die eigentliche Komponente, die angezeigt werden soll.
+
+Analog zu \nameformat{Vue} ist bei \nameformat{Angular} auch eine Lösung direkt integriert und funktioniert nach dem exakt gleichen Prinzip.
+
+\subsection{Testing}
+\nameformat{Vue} enthält Test-Tools mit denen Komponenten in Variablen gerendert werden können. Diese gespeicherten Komponenten sind herkömmliche JavaScript-Objekte und können dann mit weiteren (externen) Tools auf bestimmte Zustände und Eigenschaften geprüft werden. Das Testen von \nameformat{React}-Komponenten funktioniert analog zu \nameformat{Vue}.
+
+Alle zum Testen benötigten Tools sind bei \nameformat{Angular} bereits enthalten und sehr ausführlich dokumentiert. Wenn nur bestimmte Teilaspekte einer Anwendung, wie etwa die UI-Komponenten, getestet werden sollen, ist der Aufwand dies einzurichten durch die Notwendigkeit, sich mit dem kompletten Test-Konzept auseinandersetzen zu müssen, höher als bei \nameformat{Vue} und \nameformat{React}.
+
+\subsection{\acrlong{ssr}}
+Bei der Benutzung von \gls{ssr} werden die Seiten nicht auf dem Clientrechner, sondern bereits vor dem Senden auf dem Server gerendert. Alle Frameworks besitzen auch die Möglichkeit nur wenige Seiten ``vor-gerendert'' auf dem Server liegen zu haben, anstatt sie dynamisch bei entsprechenden Anfragen zu generieren. Hierfür kann das \nameformat{Node.js} Tool \nameformat{Prerender.io} benutzt werden.
+
+\nameformat{Vue} liefert einen dafür vorgesehenen Renderer (\nameformat{vue-server-renderer}), der Markup als Text generiert. Das kann beim initialen Laden der Seite ausgeliefert werden (erfordert einen \nameformat{Node.js} Server).
+
+Auch \nameformat{React} liefert einen dafür vorgesehenen Renderer (\nameformat{ReactDOMServer}), der Markup als Text generiert. Das kann beim initialen Laden der Seite ausgeliefert und auf Clientseite mit ReactDom.hydrate() mit Inhalten gefüllt werden (erfordert einen \nameformat{Node.js} Server).
+    
+Bei \nameformat{Angular} werden für \gls{ssr} zusätzliche Abhängigkeiten, Änderungen an der Konfiguration, ein zusätzliches Build / Bundle Target und ein zusätzliches Modul mit extra Konfiguration, das auf dem Server läuft und dafür zuständig ist das neue JavaScript-Bundle auszuliefern, benötigt.
 
 \subsection{Fazit}
 Alle betrachteten Alternativen sind valide Optionen, mit denen jegliche Anforderungen umgesetzt werden können. Der Einstieg in \nameformat{Angular} scheint allerdings schwierig, da dort eine Vielzahl an Technologien für verschiedenste Zwecke mitgeliefert werden. Da es seitens der Funktionalität keine Unterschiede gibt, kommt es mehr oder weniger darauf an, welches Projekt einem Entwickler (-team) am meisten zusagt bzw.\ mit welchem es am besten arbeiten kann.

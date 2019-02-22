@@ -1,6 +1,5 @@
 \chapter{Anforderungsanalyse}\label{chap:requirements}
-Um zu wissen, welche Features und Eigenschaften im neuen Konzept beachtet werden müssen, werden in diesem Kapitel vor der Erstellung zunächst die Anforderungen ermittelt.  \\
-\fixme{transitions between sections}
+Um zu wissen, welche Features und Eigenschaften im neuen Konzept beachtet werden müssen, werden in diesem Kapitel vor der Erstellung zunächst die Anforderungen ermittelt.
 
 \section{Produktüberblick}\label{sec:product_overview}
 Zum tiefgreifenderen Verständnis der Anforderungen an das zu entwickelnde Architekturkonzept, muss zunächst einmal der Ausgangszustand, das heißt der jetzige Desktopclient des \nameformat{\gls{crm}} betrachtet werden. Wie am Begriff \gls{CRM} bereits zu erkennen, handelt es sich dabei um ein Programm, das der Verwaltung und Vernetzung von Kunden- und Kontaktdaten dient. Neben den typischen Einsatzbereichen von \gls{CRM}-Produkten, wie die Verwaltung von Kundendaten, Terminen und Aufgaben, legt die combit GmbH allerdings besonderen Wert darauf das Programm möglichst flexibel zu gestalten, um dadurch zahlreiche Kundengruppen mit ihren spezifischen Anforderungen an die Einsatzbereiche der Software zu bedienen. Einige Beispiele hierfür sind die mitgelieferten, fertigen Lösungen (im Kontext des \nameformat{\gls{crm}} \nameformat{Solutions} genannt), mit denen unter anderem Immobilien gehandhabt, die Vermittlung von Arbeitsstellen an Drittfirmen organisiert oder ein Ticket-System aufgebaut werden können. Zudem ist eine Musterlösung für den \gls{dsgvo}-konformen Umgang mit sämtlichen Daten integriert. Unabhängig von diesen Lösungen stehen bestimmte Funktionalitäten durchweg zur Verfügung: Import und Export von Daten in viele verschiedene Formate, Versand von (Serien-) E-Mails oder etwa die Generierung von Berichten (Reports) durch ein zweites internes Produkt ``List \& Label''. Diese bauen jedoch auf den Daten einer Lösung auf.
@@ -35,10 +34,12 @@ Abbildung~\ref{fig:crm_technical_stack} zeigt eine Übersicht der momentanen Arc
 
 
 \section{Funktionale Anforderungen}
-In diesem Teil des Kapitels werden funktionale Anforderungen, welche die Web-UI unterstützen soll, aufgelistet und kurz erläutert. Der erste Abschnitt befasst sich mit Anforderungen, die sich aus dem \gls{crm} ergeben, der zweite Abschnitt mit Anforderungen, die sich aus Web-Apps ergeben.
+In diesem Teil des Kapitels werden funktionale Anforderungen, welche die Web-UI unterstützen soll, aufgelistet und kurz erläutert.
 
 \subsection{\acrlong{crm}}
-\subsubsection{Automatisierte Erstellung}
+Dieser erste Abschnitt befasst sich mit Anforderungen, welche sich direkt aus dem \gls{crm} und dessen bisherigen Eigenschaften und Funktionen ergeben.
+
+\subsubsection{Automatisierte Erstellung der neuen UI}
 Die meisten Kunden haben entweder bereits ihre eigenen Ansichten erstellt oder benutzen angepasste Versionen der mitgelieferten Designs. Wird als langfristiges Ziel definiert, die komplette UI-Schicht ins Web zu überführen, muss das Ergebnis dieses Prozesses für die Benutzer leicht und zugänglich genug sein, um nicht schon im Voraus abgelehnt zu werden. Es ist daher essenziell, dass sämtliche bisherigen Ansichten mit minimalem Aufwand seitens der Nutzer im Web weiterverwendet werden können. Der minimale Aufwand meint dabei, dass im Ergebnis lediglich kleine Anpassungen tolerierbar sind, jedoch nicht die Neuerstellung jeder einzelnen Ansicht. Eines der Hauptziele dieser Arbeit ist es daher, eine automatische Umwandlung bestehender Ansichten zu ermöglichen. Hierfür muss die aktuelle UI-Spezifikation analysiert und eine neue Spezifikation erstellt werden, mithilfe derer Implementierungen aus den vorherigen abgeleitet werden können.
 
 \subsubsection{Benutzerverwaltung}
