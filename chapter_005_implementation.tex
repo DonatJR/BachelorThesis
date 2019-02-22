@@ -1,6 +1,6 @@
 \chapter{Implementierung eines Prototypen}\label{chap:implementation}
+In diesem Kapitel wird die Entwicklung eines auf dem zuvor ausgearbeiteten Konzept basierten Prototypen beschrieben. Dieser Prototyp enthält nicht alle im Konzept beschriebenen Anforderungen und befindet sich auch nicht in einem finalen Entwicklungsstadium, kann aber mit weiteren Entwicklungsressourcen als Grundlage für eine finale Implementierung genutzt werden. Er soll zeigen, wie sich das entworfene Konzept umsetzen lässt und die darin benutzten Technologien miteinander interagieren. \\
 \fixme{move code listings to appendix}
-In diesem Kapitel wird die Entwicklung eines auf dem zuvor ausgearbeiteten Konzept basierten Prototypen beschrieben. Dieser Prototyp enthält nicht alle im Konzept beschriebenen Anforderungen und befindet sich auch nicht in einem finalen Entwicklungsstadium, kann aber mit weiteren Entwicklungsressourcen als Grundlage für eine finale Implementierung genutzt werden. Er soll zeigen, wie sich das entworfene Konzept umsetzen lässt und die darin benutzten Technologien miteinander interagieren.
 
 \section{Tool zum Parsen der vorhandenen UI-Struktur}
 Wie in Kapitel~\ref{chap:concept} beschrieben müssen die Dateien, welche das momentane UI-Layout enthalten, in ein web-freundliches Format (JSON) übersetzt werden. Bei diesem Schritt ist es auch direkt möglich Informationen, die zukünftig nicht mehr benötigt werden, nicht mit zu übernehmen und andere Informationen in eine optimalere Struktur zu überführen. Für diesen Zweck wurde ein kleines Hilfstool in C\# geschrieben, welches sowohl die ``.dli''-Datei der Detailansicht als auch die ``.vlc''-Datei der Übersichtsliste einer einzelnen cRM-Ansicht als Input erhält und daraus eine ``.json''-Datei mit allen benötigten Informationen erstellt. Um die Anpassbar- und Wiederverwendbarkeit des Tools zu maximieren, wurde das \textbf{Visitor-Pattern} angewandt. In Abbildung~\ref{fig:web-conv_file-tree} ist der Aufbau des Tools erkennbar.
@@ -75,5 +75,36 @@ Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erste
 \lstinputlisting[language={JavaScript},label={lst:graphql_schema_resolver},caption={GraphQL Schema-Resolver}]{code/chapter_005_graphql_schema_resolver.js}
 
 \section{Beispielumsetzung}
-Um die Validität des Konzeptes zu belegen, wird eine beispielhafte, simple Oberfläche des \nameformat{\gls{crm}} Desktopclients in die neue Darstellung übersetzt.\\
-\fixme{EINFACHES (wenig Elemente), ABER KOMPLETTES BSP für jetzige UI -> neue UI}
+Um die Validität des Konzeptes zu belegen, wird eine beispielhafte, simple Oberfläche des \nameformat{\gls{crm}} Desktopclients in die neue Darstellung übersetzt. In den Abbildungen~\ref{fig:listview_crm} und~\ref{fig:listview_new} ist die bisherige und die neuen Übersichtsliste zu sehen. Die angezeigten Spalten der neuen Liste entsprechen dabei der Konfiguration der Liste auf dem Desktopclient. 
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{figures/listview_crm.png}
+        \caption{Übersichtsliste des Desktopclients}\label{fig:listview_crm}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{figures/listview_new.png}
+        \caption{Übersichtsliste der Weboberfläche}\label{fig:listview_new}
+\end{figure}
+
+Analog zur Übersichtsliste stellen die Abbildungen~\ref{fig:detailview_crm} und~\ref{fig:detailview_new} die Detailansicht des Desktopclients und der Web-UI mit aktiviertem ``Dark Mode'' an. Die Struktur der Weboberfläche unmittelbar nach der automatisierten Umsetzung entspricht, wie zuvor beschrieben, einer Liste von Elementen. Sie wurde für die Darstellung daher bereits händisch angepasst, um der des Desktops zu entsprechen.
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{figures/detailview_crm.png}
+        \caption{Detailansicht des Desktopclients}\label{fig:detailview_crm}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=\textwidth]{figures/detailview_new.png}
+        \caption{Detailansicht der Weboberfläche}\label{fig:detailview_new}
+\end{figure}
+
+Alle dargestellten Daten beider Ansichten, inklusive der generierten Dummy-Daten, wurden vom Mock-Server abgefragt, die Weboberfläche hat keinerlei Kenntnisse über diese. Die neuen Oberflächen enthalten noch einige Darstellungselemente, etwa die Checkboxen zum Wechseln des Modus von Übersichtsliste zur Detailansicht und des ``Dark Mode'' oder die Informationen zu den Elementtypen in der Detailansicht (durch das Anzeigen von Mock-Daten ist es sonst schwierig zu erkennen, welches Daten zu welchem Feld gehören), welche in der finalen Umsetzung nicht enthalten sein werden.
