@@ -38,8 +38,7 @@ Der Input und das Endergebnis in Form eines vom \nameformat{GraphQL}-Server dire
 \lstinputlisting[caption={JSON-Ergebnis},label={lst:json_output}]{code/chapter_005_json_output.json}
 
 \section{Webseite}
-% mit cra erstellt, enthält nur unten beschriebene komponenten, zwei themes, tests und ein paar zusätzliche ui elemente zur steuerung des verhaltens (view mode, dark mode, edit mode)
-\fixme{once project is ``final'' (Beispielumsetzung)}
+Das Projekt für die Webseite wurde mit dem von Facebook entwickelten \gls{cli}-Tool \nameformat{create-react-app} erstellt. Dieses führt die allgemeine Konfiguration, die Einrichtung von Typescript und der Test-Funktionalitäten selbstständig durch, weitere Anpassungen sind daher nicht notwendig. Neben den in diesem Abschnitt beschriebenen Komponenten und Tests enthält das Projekt ausschließlich die Definition von zwei verschiedenen CSS-Themes und einige wenige temporäre UI-Elemente zur Steuerung des Verhaltens (Umschalten des Anzeigemodus, des Themes und des Editier-Modus).
 
 \subsection{React-Komponenten}
 Der Aufbau aller Komponenten folgt einem identischen Schema. Zunächst ist eine \nameformat{React}-Komponente so definiert, dass sie als Parameter alle notwendigen Eigenschaften zur Anzeige und Mutation von Daten übergeben bekommt. Die Komponente enthält keine Logik zur Veränderung der Parameter.
