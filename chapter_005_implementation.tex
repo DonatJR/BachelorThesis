@@ -3,7 +3,7 @@ In diesem Kapitel wird die Entwicklung eines auf dem zuvor ausgearbeiteten Konze
 \fixme{move code listings to appendix}
 
 \section{Tool zum Parsen der vorhandenen UI-Struktur}
-Wie in Kapitel~\ref{chap:concept} beschrieben müssen die Dateien, welche das momentane UI-Layout enthalten, in ein web-freundliches Format (JSON) übersetzt werden. Bei diesem Schritt ist es auch direkt möglich Informationen, die zukünftig nicht mehr benötigt werden, nicht mit zu übernehmen und andere Informationen in eine optimalere Struktur zu überführen. Für diesen Zweck wurde ein kleines Hilfstool in C\# geschrieben, welches sowohl die ``.dli''-Datei der Detailansicht als auch die ``.vlc''-Datei der Übersichtsliste einer einzelnen cRM-Ansicht als Input erhält und daraus eine ``.json''-Datei mit allen benötigten Informationen erstellt. Um die Anpassbar- und Wiederverwendbarkeit des Tools zu maximieren, wurde das \textbf{Visitor-Pattern} angewandt. In Abbildung~\ref{fig:web-conv_file-tree} ist der Aufbau des Tools erkennbar.
+Wie in Kapitel~\ref{chap:concept} beschrieben müssen die Dateien, welche das momentane UI-Layout enthalten, in ein web-freundliches Format (JSON) übersetzt werden. Bei diesem Schritt ist es auch direkt möglich Informationen, die zukünftig nicht mehr benötigt werden, nicht mit zu übernehmen und andere Informationen in eine optimalere Struktur zu überführen. Für diesen Zweck wurde ein kleines Hilfstool in C\# geschrieben, welches sowohl die \enquote{.dli}-Datei der Detailansicht als auch die \enquote{.vlc}-Datei der Übersichtsliste einer einzelnen cRM-Ansicht als Input erhält und daraus eine \enquote{.json}-Datei mit allen benötigten Informationen erstellt. Um die Anpassbar- und Wiederverwendbarkeit des Tools zu maximieren, wurde das \textbf{Visitor-Pattern} angewandt. In Abbildung~\ref{fig:web-conv_file-tree} ist der Aufbau des Tools erkennbar.
 
 \begin{figure}
     \centering
@@ -52,7 +52,7 @@ Der vierte und letzte Bestandteil einer Komponente sind die im nächsten Abschni
 
 \subsection{Tests}
 Einzelne Komponenten werden durch die in Abschnitt~\ref{subsec:test_ci_concept} erwähnten Snapshot-Vergleiche (siehe Ausschnitt~\ref{lst:snapshot_test}) auf unerwünschte Veränderungen geprüft. Weiterhin wird getestet, ob die Übergabeparameter in Form von Formatierungsbedingungen oder anzuzeigenden Daten korrekt ausgewertet und dargestellt werden. Da die Clientapplikation bewusst wenig Logik enthält, werden in diesem Bereich auch verhältnismäßig wenige Tests benötigt.
-Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist nur die Konfiguration der Komponente selbst, optional werden aber jeweils noch die im Produktivcode ebenso benutzte globale CSS-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt `Knobs') angegeben. Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
+Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist nur die Konfiguration der Komponente selbst, optional werden aber jeweils noch die im Produktivcode ebenso benutzte globale CSS-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt \enquote{Knobs}) angegeben. Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
 
 \lstinputlisting[language={JavaScript},caption={Snapshot-Test mit Jest und Enzyme},label={lst:snapshot_test}]{code/chapter_005_snapshot_test.js}
 
@@ -89,7 +89,7 @@ Um die Validität des Konzeptes zu belegen, wird eine beispielhafte, simple Ober
         \caption{Übersichtsliste der Weboberfläche}\label{fig:listview_new}
 \end{figure}
 
-Analog zur Übersichtsliste stellen die Abbildungen~\ref{fig:detailview_crm} und~\ref{fig:detailview_new} die Detailansicht des Desktopclients und der Web-UI mit aktiviertem ``Dark Mode'' an. Die Struktur der Weboberfläche unmittelbar nach der automatisierten Umsetzung entspricht, wie zuvor beschrieben, einer Liste von Elementen. Sie wurde für die Darstellung daher bereits händisch angepasst, um der des Desktops zu entsprechen.
+Analog zur Übersichtsliste stellen die Abbildungen~\ref{fig:detailview_crm} und~\ref{fig:detailview_new} die Detailansicht des Desktopclients und der Web-UI mit aktiviertem \enquote{Dark Mode} an. Die Struktur der Weboberfläche unmittelbar nach der automatisierten Umsetzung entspricht, wie zuvor beschrieben, einer Liste von Elementen. Sie wurde für die Darstellung daher bereits händisch angepasst, um der des Desktops zu entsprechen.
 
 \begin{figure}
     \centering
@@ -102,7 +102,7 @@ Analog zur Übersichtsliste stellen die Abbildungen~\ref{fig:detailview_crm} und
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/detailview_new.png}
-        \caption{Detailansicht der Weboberfläche}\label{fig:detailview_new}
+        \caption{Detailansicht der Weboberfläche (\enquote{Dark Mode})}\label{fig:detailview_new}
 \end{figure}
 
-Alle dargestellten Daten beider Ansichten, inklusive der generierten Dummy-Daten, wurden vom Mock-Server abgefragt, die Weboberfläche hat keinerlei Kenntnisse über diese. Die neuen Oberflächen enthalten noch einige Darstellungselemente, etwa die Checkboxen zum Wechseln des Modus von Übersichtsliste zur Detailansicht und des ``Dark Mode'' oder die Informationen zu den Elementtypen in der Detailansicht (durch das Anzeigen von Mock-Daten ist es sonst schwierig zu erkennen, welches Daten zu welchem Feld gehören), welche in der finalen Umsetzung nicht enthalten sein werden.
+Alle dargestellten Daten beider Ansichten, inklusive der generierten Dummy-Daten, wurden vom Mock-Server abgefragt, die Weboberfläche hat keinerlei Kenntnisse über diese. Die neuen Oberflächen enthalten noch einige Darstellungselemente, etwa die Checkboxen zum Wechseln des Modus von Übersichtsliste zur Detailansicht und des \enquote{Dark Mode} oder die Informationen zu den Elementtypen in der Detailansicht (durch das Anzeigen von Mock-Daten ist es sonst schwierig zu erkennen, welches Daten zu welchem Feld gehören), welche in der finalen Umsetzung nicht enthalten sein werden.
