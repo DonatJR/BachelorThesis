@@ -38,6 +38,7 @@
 \RequirePackage[table]{xcolor}
 \RequirePackage{longtable}
 \RequirePackage[acronym,toc,nomain]{glossaries}
+\RequirePackage{pdfpages}
 
 
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}

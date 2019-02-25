@@ -23,18 +23,18 @@
 
 \tableofcontents
 
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
 \listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
 
 \renewcommand\lstlistlistingname{Quellcodeverzeichnis}
-\addcontentsline{toc}{chapter}{\lstlistlistingname}
 \lstlistoflistings{}
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
 
+\addtolength{\glspagelistwidth}{2.2cm}
 \printacronyms[style=long3colheader,title=Abkürzungsverzeichnis]
 
 %% Use Arabic numerals for the page numbers of the chapters.
 \mainmatter{}
-
 
 % CHAPTERS
 \include{chapter_001_introduction}
@@ -52,8 +52,13 @@
 \nocite{sturgeon_2015}
 \printbibliography[title=Weiterführende Literatur, heading=subbibliography, keyword=additional_readings]
 
+\includepdf[pages=1,pagecommand={\thispagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Ehrenwörtliche Erklärung}}]{declaration/declaration_of_authorship.pdf}
+
+\cleardoublepage{}
+
 %% Use letters for the chapter numbers of the appendices.
 \appendix{}
+\pagenumbering{Roman}
 
 \include{chapter_appendices}
 
