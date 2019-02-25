@@ -18,20 +18,21 @@ Aufbauend auf dem Kern existieren parallel der Desktopclient, ebenfalls in \name
 
 Abbildung~\ref{fig:crm_technical_stack} zeigt eine Übersicht der momentanen Architektur, Abbildung~\ref{fig:crm_future_technical_stack} hingegen, wie die Architektur in Zukunft aufgebaut sein könnte.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/crm_technical_stack.png}
         \caption{Aktueller technischer Aufbau des \nameformat{\gls{crm}}}\label{fig:crm_technical_stack}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/crm_future_technical_stack.png}
         \caption{Möglicher, zukünftiger technischer Aufbau des \nameformat{\gls{crm}}}\label{fig:crm_future_technical_stack}
 \end{figure}
 
+\clearpage{}
 
 \section{Funktionale Anforderungen des \acrlong{crm}}
 Dieser Teil des Kapitels befasst sich mit den funktionalen Anforderungen, welche sich direkt aus dem \nameformat{\gls{crm}} und dessen bisherigen Eigenschaften und Funktionen ergeben.
@@ -66,7 +67,7 @@ Der Import und Export von Daten in und aus dem \nameformat{\gls{crm}} ist ein wi
 Die interne Termin- und Aufgabenverwaltung ist analog zu anderen Daten über Datenbanktabellen realisiert. Diese können ebenso vom Backend an die Web-UI übertragen und dort dargestellt werden. Der Desktopclient unterstützt aber zudem auch die Verwaltung von Terminen von externen Programmen (z.B. \nameformat{Microsoft Outlook}). Eine Anbindung der neuen UI an diese kann nur gewährleistet werden, wenn entsprechende HTTP-APIs von den Produkten angeboten werden.
 
 \subsection{Design für mobile und stationäre Endgeräte}
-Da die neue Oberfläche alle bisherigen UI-Versionen ablösen soll, ist es ein zentrales Anliegen, sämtliche Endgeräte ihrer Möglichkeiten nach zu unterstützen. Eine bewährte Herangehensweise besteht darin, das mobile Design vor der Desktop-Ansicht zu gestalten. So können die wichtigsten Eigenschaften und Fähigkeiten des Designs direkt angelegt werden, während das Design für größere Bildschirme darauf aufbauend mit zusätzlichen Features, die speziell hierfür sinnvoll sind, ergänzt werden. Dieses Prinzip wird häufig \enquote{mobile-first}-Design genannt. Bei einer umgekehrten Vorgehensweise wird zuerst die Desktop-Ansicht mit allen verfügbaren Features und unter Ausnutzung des gesamten Bildschirmplatzes gestaltet. Dieses Design muss dann für mobile Geräte kompatibel gemacht werden, indem Features und Designelemente entfernt werden. Die Entscheidung, welche Aspekte dabei entfernt werden können, ist schwierig, da sie alle essenziell erscheinen.
+Da die neue Oberfläche alle bisherigen UI-Versionen ablösen soll, ist es ein zentrales Anliegen, sämtliche Endgeräte ihrer Möglichkeiten nach zu unterstützen. Eine bewährte Herangehensweise besteht darin, das mobile Design vor der Desktop-Ansicht zu gestalten. So können die wichtigsten Eigenschaften und Fähigkeiten des Designs direkt angelegt werden, während das Design für größere Bildschirme darauf aufbauend mit zusätzlichen Features, die speziell hierfür sinnvoll sind, ergänzt werden.\\ Dieses Prinzip wird häufig \enquote{mobile-first}-Design genannt. Bei einer umgekehrten Vorgehensweise wird zuerst die Desktop-Ansicht mit allen verfügbaren Features und unter Ausnutzung des gesamten Bildschirmplatzes gestaltet. Dieses Design muss dann für mobile Geräte kompatibel gemacht werden, indem Features und Designelemente entfernt werden. Die Entscheidung, welche Aspekte dabei entfernt werden können, ist schwierig, da sie alle essenziell erscheinen.
 Es ist zusätzlich auch wichtig zu beachten, dass viele mobile Nutzer --- je nach Standort --- keine ausreichend gute oder zumindest nur eine teilweise gute Internetverbindung besitzen und es daher wichtig ist, möglichst wenig Daten übertragen zu müssen, bevor eine Webseite angezeigt wird. Das für mobile Geräte charakteristische \nameformat{CSS} sollte zuerst geladen werde, da dies weitere Downloads von irrelevanten Daten (\nameformat{CSS} für nicht-mobile Geräte) vermeidet. Für stationäre Geräte ist eine derartige Optimierung jedoch nicht vonnöten.
 
 \subsection{Vorerst nicht unterstützte Features}
@@ -88,16 +89,16 @@ Zusätzlich zu den genannten Anforderungen gibt es im Web noch diejenigen Bereic
 Die Akronyme \enquote{i18n} und \enquote{l10n} stehen für Internationalisierung respektive Lokalisierung \parencite[vgl.][]{i18n_i10n_ishida_w3c_miller_boeing_2018}. Gemeint ist damit, dass für jede Sprachressource auf einer Webseite anstelle des Strings ein Identifikator genutzt wird, der mit Strings verschiedener Sprachen verknüpft ist. Je nach Einstellung (Auswahl durch Benutzer, Erkennung der Browsersprache etc.) können dann automatisch alle Texte in der jeweiligen Sprache angezeigt werden. Der \nameformat{\gls{crm}} unterstützt bereits mehrere Sprachen, die Ressourcen hierfür sind allerdings direkt in das Programm eingebettet. Um die gleiche Technologie für die Webseite nutzen zu können, müssten also sämtliche Texte durchweg aus dem Backend angefordert und über das Internet übertragen werden. Dies wäre nicht nur langsam und eine unnötige Belastung für den Server (Texte müssten bei jedem Aktualisieren der UI-Schicht neu geladen werden), sondern auch sehr fehleranfällig. Bei einer unterbrochenen Verbindung könnten überdies keine Fehlertexte angezeigt werden. Besonders im Hinblick auf den weiter unten beschriebenen \enquote{offline-first}-Ansatz sollten daher sämtliche Texte in der UI-Schicht gespeichert und jederzeit abrufbar sein.
 
 \subsection{Barrierefreiheit}
-Barrierefreiheit von Software bedeutet, dass diese auch von Menschen mit körperlichen Einschränkungen gut genutzt werden kann. Dies ist selbstverständlich immer ein wünschenswertes Ziel, zahlreiche Standards im Webbereich erleichtern ein solches Vorhaben jedoch in besonderem Maße. So gibt es beispielsweise bestimmte \nameformat{HTML}-Tags, die extra dafür geschaffen wurden, um von Sprachsoftware vorgelesen zu werden. Weiterhin besteht die Möglichkeit per austauschbarem \nameformat{CSS} einen \enquote{Dark Mode} anzubieten, sofern ein System von Beginn an entsprechend aufgebaut wurde.
+Barrierefreiheit von Software bedeutet, dass diese auch von Menschen mit körperlichen Einschränkungen gut genutzt werden kann. Dies ist selbstverständlich immer ein wünschenswertes Ziel, zahlreiche Standards im Webbereich erleichtern ein solches\\ Vorhaben jedoch in besonderem Maße. So gibt es beispielsweise bestimmte \nameformat{HTML}-Tags, die extra dafür geschaffen wurden, um von Sprachsoftware vorgelesen zu werden. Weiterhin besteht die Möglichkeit per austauschbarem \nameformat{CSS} einen \enquote{Dark Mode} anzubieten, sofern ein System von Beginn an entsprechend aufgebaut wurde.
 Es sollte daher herausgearbeitet werden, welche Möglichkeiten für eine hohe Barrierefreiheit existieren und wie diese bei der Softwareentwicklung beachtet und umgesetzt werden können.
 
 \subsection{Anleitungs-Modus / \enquote{Feature-Tour}}
  Um neuen Nutzern den Einstieg beim Erlernen eines Produkts zu erleichtern, kann ein interaktiver Anleitungs-Modus, welcher entweder beim ersten Aufruf einer Webseite und~/~oder bei der ersten Nutzung einzelner Features ausgelöst wird, hilfreich sein. Ein solcher Modus hebt wichtige Bedienelemente hervor und gibt kurze Erklärungen zu ebendiesen, welche entweder direkt durch einen Klick beendet werden können oder intelligent seltener erscheinen, je länger der jeweilige Nutzer das Produkt bereits kennt. Eine mögliche, fertige Umsetzung eines solchen Modus ist in Abbildung~\ref{fig:intro_js_example} von \nameformat{Intro.js} dargestellt.
 
- \begin{figure}
+ \begin{figure}[hb]
     \centering
     \captionsetup{justification=centering}
-    \includegraphics[width=\textwidth]{figures/intro_js_example.png}
+    \includegraphics[width=0.9\textwidth]{figures/intro_js_example.png}
         \caption{Anleitungs-Modus von \nameformat{Intro.js} \parencite{mehrabani}}\label{fig:intro_js_example}
 \end{figure}
 

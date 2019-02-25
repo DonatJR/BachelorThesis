@@ -22,7 +22,7 @@ Zum jetzigen Zeitpunkt muss die Clientapplikation nur eine einzige Ansicht des \
 
 \subsection{React-Komponenten}
 Die jetzige Oberfläche besteht aus einer festen Anzahl von Darstellungselementen, welche je nach Kontext andere Inhalte anzeigen. Zu den Elementen gehören unter anderem statische Texte, Eingabefelder, Check- und Comboboxen, Gruppierungen und Container für weitere Elemente. Der Kontext für den Inhalt ergibt sich zum einen aus dem Datenbankfeld, das von dem jeweiligen Element dargestellt werden soll, und zum anderen aus Einstellungen wie Sichtbarkeitsbedingungen oder Formatierungen. Da bereits im Voraus bekannt ist, welche Art von UI-Elementen benötigt werden, können diese auch schon im Vorfeld erstellt werden. Diese fertigen \nameformat{React}-Komponenten werden mit dem Produkt ausgeliefert und können zur Laufzeit dynamisch auf der Webseite platziert werden. Die Funktionalität dieser Elemente orientiert sich dabei immer an der Funktionalität der Originalkomponente.
-Bedingt durch die Zuständigkeit der Komponenten, die Abfragen für ihre Daten selbst zu verwalten, haben diese neben der tatsächlichen Darstellung hierdurch eine weitere Aufgabe. Um das Prinzip der eindeutigen Verantwortlichkeit\footnote{SRP\@: Single Responsibility Principle} zu bewahren, ist es sinnvoll, die Komponenten in eine Komponente, welche ausschließlich für das Abfragen der Daten zuständig ist, und eine weitere Komponente, welche diese Daten übergeben bekommt und nur für die Darstellung zuständig ist, aufzutrennen. So können beide Bestandteile individuell verändert oder ersetzt werden, was die Wartbarkeit des gesamten Projekts erhöht.
+Bedingt durch die Zuständigkeit der Komponenten, die\\ Abfragen für ihre Daten selbst zu verwalten, haben diese neben der tatsächlichen Darstellung hierdurch eine weitere Aufgabe. Um das Prinzip der eindeutigen Verantwortlichkeit\footnote{SRP\@: Single Responsibility Principle} zu bewahren, ist es sinnvoll, die Komponenten in eine Komponente, welche ausschließlich für das Abfragen der Daten zuständig ist, und eine weitere Komponente, welche diese Daten übergeben bekommt und nur für die Darstellung zuständig ist, aufzutrennen. So können beide Bestandteile individuell verändert oder ersetzt werden, was die Wartbarkeit des gesamten Projekts erhöht.
 
 \subsection{Komponenten-Layout}
 Für die sinnvolle Nutzung der vorgefertigten Komponenten ist es notwendig, diese nicht nur nacheinander auf der Seite zu platzieren, sondern ein bedienbares Layout für die Platzierung anzubieten. Die Umsetzung wird in diesem Abschnitt dargelegt.
@@ -47,20 +47,20 @@ Um die UI-Elemente mit Daten aus der Datenbank darzustellen, muss eine entsprech
 \subsection{Visualisierung von Lade- und Fehlerzuständen}\label{subsec:loading_state_section}
 Direktes Feedback ist für die subjektive Einschätzung einer performanten Webseite essentiell. Typischerweise ist die am längsten dauernde Aktion auf einer Webseite das Nachladen von Daten. Es ist also sinnvoll, diesen Vorgang für Nutzer deutlich und visuell ansprechend zu gestalten. Für diesen Zweck sollen alle \nameformat{React}-Komponenten eine visuell simplere Repräsentation ihrer selbst in Form von unspezifischen grauen Boxen enthalten, welche nur auf die vage Form und Darstellung mit Echtdaten hindeutet und die bereits während des Ladevorgangs angezeigt werden kann. In Abbildung~\ref{fig:comp_loading_final_comparison} ist eine Gegenüberstellung der beiden Repräsentationen, jeweils für ein Edit-Element und ein Checkbox-Element, zu sehen (finaler Zustand links, Ladezustand rechts).
 
-\begin{figure}
+\begin{figure}[hb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/comp_loading_final_comparison.png}
-        \caption{Ladezustand einer Komponente}\label{fig:comp_loading_final_comparison}
+        \caption{Ladezustand von Komponenten}\label{fig:comp_loading_final_comparison}
 \end{figure}
 
 Mit einer entsprechende Einfärbung und einem Hinweistext kann diese Visualisierung, wie in Abbildung~\ref{fig:comp_possible_error_state} an einer möglichen Ausführung gezeigt, ebenfalls zum Signalisieren von Fehlerzuständen beim Laden der Daten genutzt werden.
 
-\begin{figure}
+\begin{figure}[hb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/comp_possible_error_state.png}
-        \caption{Mögliche Fehlerzustände einer Komponente}\label{fig:comp_possible_error_state}
+        \caption{Möglicher Fehlerzustand einer Komponente}\label{fig:comp_possible_error_state}
 \end{figure}
 
 \subsection{Einbindung von GraphQL mit Apollo}
@@ -97,7 +97,7 @@ Neben diesen Tests wird während der Entwicklung und Anpassung der UI das Tool \
 Das Schema, welches den Aufbau der Anfragen und damit gleichzeitig der Antworten vorgibt, enthält mehrere \enquote{Einstiegspunkte}\footnote{Wurzel, an dem eine \nameformat{GraphQL}-Abfrage ansetzt und von der aus relativ weitere Punkte im Datengraph abgefragt werden können}. Eine Anfrage aller Informationen und deren Antwort kann in den Anhängen~\ref{lst:appendix_graphql_schema_example_data},~\ref{lst:appendix_graphql_schema_example_listview} und~\ref{lst:appendix_graphql_schema_example_detailview} eingesehen werden.
 
 Es besteht die Möglichkeit Informationen zur Struktur der Übersichtsliste, der Detailansicht und die eigentlichen Daten abzufragen. Clients können so zuerst die Struktur, das heißt sämtliche enthaltenen UI-Elemente und deren Platzierung, Formatierung etc. einer Ansicht abfragen. Die reine Struktur enthält vergleichsweise wenige zu übertragende Daten, eine entsprechende Abfrage bekommt demnach zügig eine Antwort übermittelt. Während die UI anschließend anhand der Struktur aufgebaut und Lade-Platzhalter (siehe Abschnitt~\ref{subsec:loading_state_section}) angezeigt werden, kann parallel das Nachladen der Daten stattfinden. Sobald auch dieser Vorgang abgeschlossen ist, werden die Lade-Platzhalter je nach Erfolg beziehungsweise Misserfolg mit den tatsächlichen Feldinhalten oder der Fehlervisualisierung inklusive Fehlermeldung ausgetauscht.
-Das Abfrageschema für die beiden Struktureinstiegspunkte ist an die Anforderungen des Clients angelehnt und liefert die Daten in einer Form, die der Hierarchie der React-Komponenten entspricht. So können die für die entsprechenden Komponenten relevanten Teildaten ohne weitere Bearbeitung übergeben werden. Der Dateneinstiegspunkt ist derart aufgebaut, dass entweder alle Datensätze und deren Felder oder nur ein spezifischer Datensatz, bestimmt durch dessen eindeutige ID, abgefragt werden können. Die Feldliste kann dabei ebenso per Feldname-Parameter eingeschränkt werden.
+Das Abfrageschema für die beiden Struktureinstiegspunkte ist an die Anforderungen des Clients angelehnt und liefert die Daten in einer Form, die der Hierarchie der \nameformat{React}-Komponenten entspricht. So können die für die entsprechenden Komponenten relevanten Teildaten ohne weitere Bearbeitung übergeben werden. Der Dateneinstiegspunkt ist derart aufgebaut, dass entweder alle Datensätze und deren Felder oder nur ein spezifischer Datensatz, bestimmt durch dessen eindeutige ID, abgefragt werden können. Die Feldliste kann dabei ebenso per Feldname-Parameter eingeschränkt werden.
 Um außerdem neue Elemente zur Oberfläche hinzufügen zu können, müssen sämtliche zur Verfügung stehenden Felder aus dem Backend angeboten werden können. Dazu soll die API zusätzlich zu den bereits erwähnten Eigenschaften die Möglichkeit besitzen, eine Liste dieser Felder sowie pro Feld(typ) alle UI-Elemente, welche in der Lage sind die Daten des Feldes anzuzeigen, abzufragen.
 
 \subsection{Verhinderung von Business Logik im Client}\label{subsec:api_client_no_business_logic}

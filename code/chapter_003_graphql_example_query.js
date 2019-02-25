@@ -1,4 +1,5 @@
 Query:
+
 {
   me {
     name
@@ -6,6 +7,7 @@ Query:
 }
 
 Result:
+
 {
   "me": {
     "name": "Luke Skywalker"

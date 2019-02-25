@@ -21,10 +21,10 @@ Nachdem die Informationen der XML-Datei auf diese Art und Weise in ihre einzelne
 
 Die Flexibilität dieser Architektur, welche in der Abbildung~\ref{fig:web-conv_class-diagramm} nochmals übersichtlich als Klassendiagramm dargestellt wird, ist des Weiteren daran zu erkennen, dass der einzige Unterschied beim Auslesen von Detailansicht-Datei und Übersichtslisten-Datei in der Implementierung der Interfaces besteht. Sowohl \nameformat{Acceptor}- als auch \nameformat{Visitor}-Klassen können sehr leicht einzeln angepasst oder ersetzt werden. Ebenso besteht die Möglichkeit, weitere Tokens, welche eventuell zu einem späteren Zeitpunkt benötigt werden, aus den XML-Dateien auszulesen, indem weitere \nameformat{Acceptor}- und \nameformat{Visitor}-Implementierungen hinzufügt werden.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
-    \includegraphics[width=\textwidth]{figures/web-converter_class-diagramm.png}
+    \includegraphics[width=0.9\textwidth]{figures/web-converter_class-diagramm.png}
         \caption{Klassendiagramm der Visitor-Struktur des Konvertierungstools}\label{fig:web-conv_class-diagramm}
 \end{figure}
 
@@ -43,13 +43,15 @@ Der Aufbau aller Komponenten folgt einem identischen Schema. Zunächst ist eine 
 Eine Komponente ist nicht selbst für das Abschicken der \nameformat{GraphQL}-Abfragen, welche die Struktur der Ansicht liefern, verantwortlich. Dennoch wird der jeweilige Teil der Abfrage mit den für sie relevanten Daten in der Projektstruktur zusammen mit der Komponente definiert. Eine speziell dafür ausgelegte Komponente in einem höheren Teil der Hierarchie kombiniert sämtliche Teilabfragen der UI-Komponenten (siehe Ausschnitt~\ref{lst:graphql_query}) und sendet diese an den Server. Diese Komponente ist weiterhin dafür zuständig, die vom Server erhaltenen Daten wieder auf die UI-Komponenten zu verteilen. Für die Abfragen der tatsächlichen Daten wird eine weitere Abfrage für jede Komponente definiert, welche jeweils auch von dieser Komponente ausgeführt und ausgewertet wird.
 Der vierte und letzte Bestandteil einer Komponente sind die im nächsten Abschnitt beschriebenen Tests.
 
+\clearpage{}
+
 \lstinputlisting[label={lst:styled_components},caption={Benutzung der \nameformat{styled-components} Bibliothek}]{code/chapter_005_styled_components.js}
 
 \lstinputlisting[label={lst:graphql_query},caption={Einbettung von \nameformat{GraphQL}-Query-Fragmenten}]{code/chapter_005_graphql_query.gql}
 
 \subsection{Integration der Tests}
 Einzelne Komponenten werden durch die in Abschnitt~\ref{subsec:test_ci_concept} erwähnten Snapshot-Vergleiche (siehe Ausschnitt~\ref{lst:snapshot_test}) auf unerwünschte Veränderungen geprüft. Weiterhin wird getestet, ob die Übergabeparameter in Form von Formatierungsbedingungen oder anzuzeigenden Daten korrekt ausgewertet und dargestellt werden. Da die Clientapplikation bewusst wenig Logik enthält, werden in diesem Bereich auch verhältnismäßig wenige Tests benötigt.
-Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist lediglich die Konfiguration der Komponente selbst. Optional werden aber jeweils noch die im Produktivcode ebenso benutzten globalen \nameformat{CSS}-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt \enquote{Knobs}) angegeben. Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
+Die während der Entwicklung genutzten visuellen \nameformat{Storybook}-Tests müssen für jede einzelne Komponente konfiguriert werden. Notwendig ist lediglich die Konfiguration der Komponente selbst. Optional werden aber jeweils noch die im\\ Produktivcode ebenso benutzten globalen \nameformat{CSS}-Deklarationen, die verfügbaren Themes und die in der UI veränderbaren Übergabeparameter (im Ausschnitt \enquote{Knobs}) angegeben. Abbildung~\ref{fig:storybook_example} zeigt die Darstellung der in Ausschnitt~\ref{lst:storybook_config} gezeigten Konfiguration in der \nameformat{Storybook}-Umgebung.
 
 \lstinputlisting[language={JavaScript},caption={Snapshot-Test mit \nameformat{Jest} und \nameformat{Enzyme}},label={lst:snapshot_test}]{code/chapter_005_snapshot_test.js}
 
@@ -72,34 +74,38 @@ Da das passende Backend zu dieser Arbeit erst zu einem späteren Zeitpunkt erste
 \section{Beispielumsetzung}
 Um die Validität des Konzepts zu belegen, wird eine beispielhafte, simple Oberfläche des \nameformat{\gls{crm}} Desktopclients in die neue Darstellung übersetzt. In den Abbildungen~\ref{fig:listview_crm} und~\ref{fig:listview_new} ist die bisherige sowie die neue Übersichtsliste zu sehen. Die angezeigten Spalten der neuen Liste entsprechen dabei der Konfiguration der Liste auf dem Desktopclient. 
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/listview_crm.png}
         \caption{Übersichtsliste des Desktopclients}\label{fig:listview_crm}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/listview_new.png}
         \caption{Übersichtsliste der Weboberfläche}\label{fig:listview_new}
 \end{figure}
 
+\clearpage{}
+
 Analog zur Übersichtsliste stellen die Abbildungen~\ref{fig:detailview_crm} und~\ref{fig:detailview_new} die Detailansicht des Desktopclients und der Web-UI mit aktiviertem \enquote{Dark Mode} dar. Das Layout der Weboberfläche entspricht unmittelbar nach der automatisierten Umsetzung einer Liste von nacheinander angezeigten Elementen. Sie wurde für die Darstellung daher bereits manuell angepasst, um der des Desktops zu entsprechen.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/detailview_crm.png}
         \caption{Detailansicht des Desktopclients}\label{fig:detailview_crm}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/detailview_new.png}
         \caption{Detailansicht der Weboberfläche (\enquote{Dark Mode})}\label{fig:detailview_new}
 \end{figure}
+
+\clearpage{}
 
 Sämtliche dargestellten Daten beider Ansichten, inklusive der generierten Dummy-Daten, wurden vom Mock-Server abgefragt, somit hat die Weboberfläche keinerlei Kenntnisse über die Daten. Die neuen Oberflächen enthalten noch einige Darstellungselemente, etwa die Checkboxen zum Wechseln des Modus von Übersichtsliste zur Detailansicht und Aktivieren des \enquote{Dark Mode}. Auch die Informationen zu den Elementtypen in der Detailansicht werden in der finalen Umsetzung nicht enthalten sein, durch die Anzeige von Mock-Daten ist es andernfalls jedoch schwierig zu erkennen, welches Daten zu welchem Feld gehören.

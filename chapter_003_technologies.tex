@@ -25,7 +25,7 @@ Im Fall von \nameformat{Angular} werden zur Erfüllung aller typischen Anforderu
 \subsection{Aufbau von Apps (mit Beispielkomponente)}
 Zur Veranschaulichung der Benutzung der Frameworks wurde eine ausgewählte Beispielkomponente mit jedem der drei Frameworks umgesetzt. In Abbildung~\ref{fig:example_component} ist die fertige Komponente dargestellt. Bei einem Klick in das Edit-Feld ändert sich die Farbe des Rahmens, um die Fokussierung zu signalisieren. Wird der Eintrag verändert, kann diese Änderung mit Escape verworfen oder mit Enter übernommen werden. Der Text darunter gibt immer den momentan gespeicherten Wert wieder. Die Komponente wurde in Online-Editoren erstellt, welche bereits eine fertige Umgebung mit dem jeweiligen Framework bieten. Auf die Benutzung weiterer Bibliotheken wurde hier explizit verzichtet.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=\textwidth]{figures/example_component.png}
@@ -40,7 +40,9 @@ Eine \nameformat{React}-Komponente kann entweder als herkömmliche Klasse, darge
 
 \lstinputlisting[language={JavaScript}, label={lst:react_example},caption={Umsetzung der Beispielkomponente mit \nameformat{React}}]{code/chapter_003_react_example.js}
 
-Bei \nameformat{Angular} besteht eine Komponente wie bei \nameformat{React} aus einer herkömmlichen Klasse. Diese wird jedoch mit einer speziellen Annotation mit Informationen über das Aussehen und die Platzierung der Komponente versehen.
+\clearpage{}
+
+Bei \nameformat{Angular} besteht eine Komponente wie bei \nameformat{React} aus einer herkömmlichen Klasse. Diese wird jedoch mit einer speziellen Annotation mit Informationen über das Aussehen und die Platzierung der Komponente versehen. Die entsprechende Umsetzung ist in Auflistung~\ref{lst:angular_example} dargestellt.
 
 \lstinputlisting[language={JavaScript}, label={lst:angular_example},caption={Umsetzung der Beispielkomponente mit \nameformat{Angular}}]{code/chapter_003_angular_example.js}
 
@@ -58,7 +60,7 @@ Unter Routing versteht man das Konzept, dass bei Navigation zu Subdomänen einer
 
 Routing ist bei \nameformat{Vue} direkt integriert. Routen werden in \nameformat{JavaScript} mit Komponenten verknüpft und bei Aufruf dieser Route wird die verknüpfte Komponente anstatt eines zuvor im DOM platzierten Platzhalters gerendert.
 
-\nameformat{React} besitzt keine integrierten Routing-Mechanismen, es gibt aber mehrere Alternativen als Bibliotheken. Bei \nameformat{Aviator} werden Routen als geschachteltes Objekt übergeben, bei dem jedes Element eine Route und eine Zielfunktion enthält. Die Zielfunktion wird aufgerufen, wenn zur entsprechenden Route navigiert wird. Sie muss des Weiteren Informationen darüber enthalten, wie und an welche Stelle im DOM (etwa über Dokument-Selektoren) die entsprechende Komponente gerendert werden soll. Die Nutzung von JSX ist dabei nicht mehr möglich. Bei \nameformat{react-router} hingegen werden die Routen deklarativ in den JSX-Templates hinterlegt. Sie enthalten als Property die Route, für die sie gerendert werden sollen, sowie die eigentlich anzuzeigende Komponente.
+\nameformat{React} besitzt keine integrierten Routing-Mechanismen, es gibt aber mehrere Alternativen als Bibliotheken. Bei \nameformat{Aviator} werden Routen als geschachteltes Objekt\\ übergeben, bei dem jedes Element eine Route und eine Zielfunktion enthält. Die Zielfunktion wird aufgerufen, wenn zur entsprechenden Route navigiert wird. Sie muss des Weiteren Informationen darüber enthalten, wie und an welche Stelle im DOM (etwa über Dokument-Selektoren) die entsprechende Komponente gerendert werden soll. Die Nutzung von JSX ist dabei nicht mehr möglich. Bei \nameformat{react-router} hingegen werden die Routen deklarativ in den JSX-Templates hinterlegt. Sie enthalten als Property die Route, für die sie gerendert werden sollen, sowie die eigentlich anzuzeigende Komponente.
 
 Analog zu \nameformat{Vue} ist bei \nameformat{Angular} auch eine Lösung direkt integriert welche nach demselben Prinzip funktioniert.
 
@@ -93,7 +95,7 @@ Die Mehrheit der Projekte im Webbereich setzt jedoch ohnehin vergleichbare Tooli
 Aufgrund dieser Argumentation soll zur Unterstützung der Entwickler und Vorbeugung von Fehlern bei der Entwicklung der \nameformat{React}-Seite ausschließlich \nameformat{TypeScript} benutzt werden. 
 
 \section{API-Anbindung}
-Für die Anbindung der API kommen zwei Ansätze in Frage: \nameformat{REST} und \nameformat{GraphQL}\@. Bei \nameformat{REST} handelt es sich um einen Architekturstil, bei dem Ressourcen über URI-Endpunkte angesprochen und abgerufen werden. \nameformat{GraphQL} hingegen ist eine von \nameformat{Facebook} entwickelte Query-Sprache zur Abfrage von vorhandenen Daten. In den folgenden Abschnitten werden speziell die für dieses Projekt relevanten Vor- und Nachteile beider Ansätze angesprochen.
+Für die Anbindung der API kommen zwei Ansätze in Frage: \nameformat{REST} und \nameformat{GraphQL}\@. Bei \nameformat{REST} handelt es sich um einen Architekturstil, bei dem Ressourcen über URI-Endpunkte angesprochen und abgerufen werden. \nameformat{GraphQL} hingegen ist eine von \nameformat{Facebook} entwickelte Query-Sprache zur Abfrage von vorhandenen Daten. In den\\ folgenden Abschnitten werden speziell die für dieses Projekt relevanten Vor- und Nachteile beider Ansätze angesprochen.
 
 \subsection{Abwägung von REST für die API-Anbindung}
 \nameformat{REST}-APIs sind heutzutage die Norm, diese Architektur allerdings korrekt umzusetzen, ist jedoch mit viel Arbeit und gewissen Nachteilen verbunden. Dies könnte einer der Gründe dafür sein, dass ein großer Teil der angesprochenen \nameformat{REST}-APIs nur \enquote{REST-like} sind. Als \enquote{REST-like} werden die Implementationen bezeichnet, welche das sogenannte HATEOAS~\footnote{Hypermedia as the Engine of Application State}-Konzept nicht umsetzen. Das Konzept beschreibt, wie ein Client durch die API navigieren soll --- alle validen Übergänge vom momentanen Zustand in den nächsten sind bereits in der Antwort einer Anfrage in Form von Links und Metadaten verfügbar. Ein Konsument muss damit nicht mehr wissen, welche Anfragen zu welchem Zeitpunkt gültig sind und kann immer genau die Aktionen anbieten, die auch von der API angeboten werden. Eine Versionierung der API (und damit stärkere Kopplung zwischen Clients und Server) entfällt ebenfalls, neue Features können als weitere Aktion-Links auftauchen und alte, bald nicht mehr verfügbare Features können neben einem Link mit der Information versehen werden, dass sie nicht weiter genutzt werden sollten. Trotz verschiedener Standards, die beim Erstellen der Struktur der Daten helfen, ist es aufgrund des Mehraufwands bei jedem Endpoint dennoch mühsam, eine \nameformat{REST}-API mit HATEOAS korrekt zu implementieren. Zusätzlich dazu, und dieser Nachteil wird im Gegenzug zu der gerade beschriebenen Flexibilität absichtlich in Kauf genommen, können solche APIs nur navigiert werden, indem vielen Links gefolgt und damit viele Netzwerkanfragen vorgenommen werden. 
