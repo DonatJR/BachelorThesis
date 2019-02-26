@@ -4,19 +4,19 @@ Page: {
     },
     Controls: {
         __resolveType(obj: { type: string }) {
-        if (obj.type === "static") {
-            return "Static";
-        }
+            if (obj.type === "static") {
+                return "Static";
+            }
 
-        if (obj.type === "edit") {
-            return "Edit";
-        }
+            if (obj.type === "edit") {
+                return "Edit";
+            }
 
-        if (obj.type === "button") {
-            return "Button";
-        }
+            if (obj.type === "button") {
+                return "Button";
+            }
 
-        return null;
+            return null;
         }
     },
     Static: {

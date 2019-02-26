@@ -1,17 +1,17 @@
 <list name="Page0">
     <list name="Controls">
         <list name="Control">
-        <item name="TypeIndex">1</item>
-        <item name="Type">STATIC</item>
-        <item name="Rect(l,t,w,h)">(18,28,420,11)</item>
-        <item name="ColorBackground">Transparent</item>
-        <item name="CondVisible">Deactivated</item>
-        <item name="InputLCID">0</item>
-        <item name="EnvironmentRestriction">0</item>
-        <item name="UIModifiers">0:UkdCKDI1NSwwLDAp,1:IlNlZ29lIFVJIg==,2:RmFsc2U=,3:RmFsc2U=,4:RmFsc2U=,5:RmFsc2U=,6:MTMuMA==</item>
-        <item name="Font">{(255,0,0),13,-17,0,0,0,400,0,0,0,0,3,2,1,34,Segoe UI}</item>
-        <item name="Calculated">TRUE</item>
-        <item name="Formula">«&quot;--- deaktiviert seit &quot; + Date$(Date(DeactivatedOn),&quot;%02d.%02m.%04y %02H:%02i:%02s&quot;) + Cond(not IsNullOrEmpty(DeactivatedReason), &quot;, Grund: &quot; + DeactivatedReason) + &quot; ---&quot;»</item>
-        <item name="Orientation">0</item>
+            <item name="TypeIndex">1</item>
+            <item name="Type">STATIC</item>
+            <item name="Rect(l,t,w,h)">(18,28,420,11)</item>
+            <item name="ColorBackground">Transparent</item>
+            <item name="CondVisible">Deactivated</item>
+            <item name="InputLCID">0</item>
+            <item name="EnvironmentRestriction">0</item>
+            <item name="UIModifiers">0:UkdCKDI1NSwwLDAp,1:IlNlZ29lIFVJIg==,2:RmFsc2U=,3:RmFsc2U=,4:RmFsc2U=,5:RmFsc2U=,6:MTMuMA==</item>
+            <item name="Font">{(255,0,0),13,-17,0,0,0,400,0,0,0,0,3,2,1,34,Segoe UI}</item>
+            <item name="Calculated">TRUE</item>
+            <item name="Formula">«&quot;--- deaktiviert seit &quot; + Date$(Date(DeactivatedOn),&quot;%02d.%02m.%04y %02H:%02i:%02s&quot;) + Cond(not IsNullOrEmpty(DeactivatedReason), &quot;, Grund: &quot; + DeactivatedReason) + &quot; ---&quot;»</item>
+            <item name="Orientation">0</item>
         </list>
         ...

@@ -5,7 +5,7 @@
         "controls": Array<{
             "type": String, // Static, Edit, Button, ...
             "database_field": String,
-            ... // Typspezifische Felder
+            ... // type specific fields
         }>
     }>
 }

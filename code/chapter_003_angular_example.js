@@ -1,3 +1,4 @@
+// component annotation for HTML and CSS
 @Component({
     selector: 'input-element',
     template: `
@@ -8,7 +9,6 @@
     `,
     styles: [`.inputElement:focus {outline: none;} .submitInfo { color: green; } .abortInfo { color: red; }`]
 })
-
 export class InputElement  {
     value = '';
     editing = false;

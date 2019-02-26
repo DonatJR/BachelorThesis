@@ -8,7 +8,7 @@ const EditFragment = gql`
 `;
 
 // embedding of fragments
- const ControlsFragment = gql`
+const ControlsFragment = gql`
   fragment Controls on Page {
     controls {
       ...EditControl
